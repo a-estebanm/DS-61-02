@@ -3,36 +3,45 @@ package e4;
 public class TrafficJunction {
 
 
-    enum Lights{
+    public enum Lights{
+
+
+
         GREEN(15),
         YELLOW(5),
         RED();
 
         private int timeToStart;
-        private int timeToRed;
+        private TrafficLights trafficLight;
         Lights(int timeToStart) {
             this.timeToStart=timeToStart;
         }
 
         Lights(){
-            if ()
-            this.timeToRed
+            this.timeToStart= (trafficLight.position)*20;
 
         }
+
     }
-    enum TrafficLights{
+    public final Lights colors[] = {Lights.GREEN,Lights.YELLOW,Lights.RED};
+    public static void ChangeColor(){
+
+        if ()
+
+    }
+
+
+    public enum TrafficLights{
 
         NORTH(Lights.GREEN,1),
         SOUTH(Lights.RED,2),
         EAST(Lights.RED,3),
         WEST(Lights.RED,4);
 
-        private Lights color;
-        private int position;
+        private final int position;
 
         TrafficLights(Lights color, int position){
 
-            this.color=color;
             this.position=position;
 
         }
@@ -45,6 +54,9 @@ public class TrafficJunction {
      */
     public TrafficJunction () {
 
+        Lights[] lights = new Lights[]{Lights.GREEN,Lights.YELLOW,Lights.RED};
+
+        TrafficLights[] trafficLights = new TrafficLights[]{TrafficLights.NORTH,TrafficLights.SOUTH,TrafficLights.EAST,TrafficLights.WEST};
 
 
     }
@@ -55,7 +67,14 @@ public class TrafficJunction {
      * If it changes to red then the following traffic light changes to green .
      * The order is: north , south , east , west and then again north .
      */
-    public void timesGoesBy () { /* ... */ }
+    public void timesGoesBy () {
+
+        Lights.GREEN.timeToStart-=1;
+        Lights.YELLOW.timeToStart-=1;
+        Lights.RED.timeToStart-=1;
+        if (Lights.GREEN.timeToStart==0||Lights.YELLOW.timeToStart==0||Lights.RED.timeToStart==0)
+
+    }
     /**
      * If active is true all the traffic lights of the junction must change to
      * blinking amber ( meaning a non - controlled junction ).
