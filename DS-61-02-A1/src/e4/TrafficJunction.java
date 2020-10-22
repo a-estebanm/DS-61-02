@@ -11,20 +11,13 @@ public class TrafficJunction {
         public int pga=0;
         public boolean isGreen=false;
         public PgaAndIsGreen(int pga, boolean isGreen) { this.pga = pga; this.isGreen = isGreen; }
-    }
 
-
-    private void Reset(boolean a) {
-
-        trafficLights[0].color = LightsClass.Lights.GREEN;
-        trafficLights[0].color.timeToGoOff = 15;
-        if (a) {
-            for (int i = 1; i < 4; i++) {
-                trafficLights[i].color = LightsClass.Lights.RED;
-
-            }
+        PgaAndIsGreen() {
         }
     }
+
+
+
 
 
     /**
@@ -50,21 +43,9 @@ public class TrafficJunction {
     public void timesGoesBy() {
 
         if (trafficLights[0].color == trafficLights[1].color && trafficLights[0].color == LightsClass.Lights.AMBER) return;
-        TrafficLightsClass.TrafficLights.PgaAndIsGreen pgaG = new TrafficLightsClass.TrafficLights.PgaAndIsGreen(0,false);
+        PgaAndIsGreen pgaG = new TrafficLightsClass.TrafficLights.PgaAndIsGreen(0,false);
         pgaG=trafficLights[0].FindGreenOrAmber(this);
-        if (trafficLights[pgaG.pga].color.timeToGoOff-- == 0) {
-            if (!pgaG.isGreen) {
-                trafficLights[pgaG.pga].color = LightsClass.Lights.RED;
-                if (trafficLights[pgaG.pga].position == 4) this.Reset(false);
-                else {
-                    trafficLights[pgaG.pga + 1].color = LightsClass.Lights.GREEN;
-                    trafficLights[pgaG.pga + 1].color.timeToGoOff = 15;
-                }
-            } else {
-                trafficLights[pgaG.pga].color = LightsClass.Lights.AMBER;
-                trafficLights[pgaG.pga].color.timeToGoOff = 5;
-            }
-        }
+        this.lights[0].ChangeLight(this,pgaG);
     }
 
     /**
@@ -79,7 +60,7 @@ public class TrafficJunction {
         if (active) {
             for (int i = 0; i < 4; i++) trafficLights[i].color = LightsClass.Lights.AMBER;
         } else {
-            this.Reset(true);
+            this.trafficLights[0].Reset(this,true);
         }
     }
 

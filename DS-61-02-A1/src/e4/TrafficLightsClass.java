@@ -23,13 +23,13 @@ public class TrafficLightsClass {
         TrafficLights(int position) {
             this.position = position;
         }
-        static class PgaAndIsGreen {
+        static class PgaAndIsGreen extends TrafficJunction.PgaAndIsGreen {
             public int pga=0;
             public boolean isGreen=false;
             public PgaAndIsGreen(int pga, boolean isGreen) { this.pga = pga; this.isGreen = isGreen; }
         }
 
-        public PgaAndIsGreen FindGreenOrAmber(TrafficJunction o){
+        PgaAndIsGreen FindGreenOrAmber(TrafficJunction o){
             PgaAndIsGreen pgaG = new PgaAndIsGreen(0,false);
             for (; pgaG.pga < 4; pgaG.pga++) {
 
@@ -43,20 +43,19 @@ public class TrafficLightsClass {
             return pgaG;
         }
 
+        void Reset(TrafficJunction o, boolean a) {
+
+            o.trafficLights[0].color = LightsClass.Lights.GREEN;
+            o.trafficLights[0].color.timeToGoOff = 15;
+            if (a) {
+                for (int i = 1; i < 4; i++) {
+                    o.trafficLights[i].color = LightsClass.Lights.RED;
+
+                }
+            }
+        }
+
     }
 
-    /*public int FindGreenOrAmber(Traffic o, boolean isGreen){
-        int pga;
-        for (pga = 0; pga < 4; pga++) {
-
-            if (o.trafficLights[pga].color == LightsClass.Lights.GREEN) {
-                isGreen = true;
-                break;
-            } else if (o.trafficLights[pga].color == LightsClass.Lights.AMBER) break;
-
-
-        }
-     return pga;
-    }*/
 
 }
