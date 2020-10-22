@@ -1,5 +1,6 @@
  package e3;
 
+import e4.TrafficJunction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -104,6 +105,7 @@ class ClockTest {
 
         assertNotEquals(c1, null);
         assertNotEquals(new Object(), c1);
+
     }
 
     @Test
