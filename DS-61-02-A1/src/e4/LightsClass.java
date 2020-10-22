@@ -1,5 +1,7 @@
 package e4;
 
+import java.security.KeyPair;
+
 public class LightsClass {
 
     public enum Lights {
@@ -18,6 +20,8 @@ public class LightsClass {
 
         Lights() {
         }
+
+
 
         public void ChangeLight(TrafficJunction o, TrafficJunction.PgaAndIsGreen pgaG) {
             if (o.trafficLights[pgaG.pga].color.timeToGoOff-- == 0) {

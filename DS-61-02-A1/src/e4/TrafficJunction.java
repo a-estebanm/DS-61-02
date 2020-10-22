@@ -1,5 +1,7 @@
 package e4;
 
+import static e4.TrafficLightsClass.FindGreenOrAmber;
+
 public class TrafficJunction {
 
     public LightsClass.Lights[] lights;
@@ -8,8 +10,8 @@ public class TrafficJunction {
 
 
     static class PgaAndIsGreen {
-        public int pga=0;
-        public boolean isGreen=false;
+        public int pga;
+        public boolean isGreen;
         public PgaAndIsGreen(int pga, boolean isGreen) { this.pga = pga; this.isGreen = isGreen; }
 
         PgaAndIsGreen() {
@@ -43,8 +45,8 @@ public class TrafficJunction {
     public void timesGoesBy() {
 
         if (trafficLights[0].color == trafficLights[1].color && trafficLights[0].color == LightsClass.Lights.AMBER) return;
-        PgaAndIsGreen pgaG = new TrafficLightsClass.TrafficLights.PgaAndIsGreen(0,false);
-        pgaG=trafficLights[0].FindGreenOrAmber(this);
+        PgaAndIsGreen pgaG;
+        pgaG= FindGreenOrAmber(this);
         this.lights[0].ChangeLight(this,pgaG);
     }
 

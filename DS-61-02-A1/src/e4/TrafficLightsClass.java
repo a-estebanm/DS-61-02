@@ -23,15 +23,12 @@ public class TrafficLightsClass {
         TrafficLights(int position) {
             this.position = position;
         }
-        static class PgaAndIsGreen extends TrafficJunction.PgaAndIsGreen {
-            public int pga=0;
-            public boolean isGreen=false;
-            public PgaAndIsGreen(int pga, boolean isGreen) { this.pga = pga; this.isGreen = isGreen; }
-        }
 
-        PgaAndIsGreen FindGreenOrAmber(TrafficJunction o){
-            PgaAndIsGreen pgaG = new PgaAndIsGreen(0,false);
-            for (; pgaG.pga < 4; pgaG.pga++) {
+
+
+       /* PgaAndIsGreen FindGreenOrAmber(TrafficJunction o){
+            PgaAndIsGreen pgaG = new PgaAndIsGreen();
+            for (pgaG.pga=0; pgaG.pga < 4; pgaG.pga++) {
 
                 if (o.trafficLights[pgaG.pga].color == LightsClass.Lights.GREEN) {
                     pgaG.isGreen = true;
@@ -41,7 +38,7 @@ public class TrafficLightsClass {
 
             }
             return pgaG;
-        }
+        }*/
 
         void Reset(TrafficJunction o, boolean a) {
 
@@ -56,6 +53,30 @@ public class TrafficLightsClass {
         }
 
     }
+    public static class PgaAndIsGreen extends TrafficJunction {
+        public int pga;
+        public boolean isGreen;
+        public PgaAndIsGreen() {
 
+
+
+        }
+
+    }
+
+ public static TrafficJunction.PgaAndIsGreen FindGreenOrAmber(TrafficJunction o){
+    TrafficJunction.PgaAndIsGreen pgaG = new TrafficJunction.PgaAndIsGreen();
+    for (pgaG.pga=0; pgaG.pga < 4; pgaG.pga++) {
+
+        if (o.trafficLights[pgaG.pga].color == LightsClass.Lights.GREEN) {
+            pgaG.isGreen = true;
+
+            break;
+        } else if (o.trafficLights[pgaG.pga].color == LightsClass.Lights.AMBER) break;
+
+
+    }
+    return pgaG;
+}
 
 }
