@@ -51,19 +51,18 @@ public class TrafficJunction {
 
         if (trafficLights[0].color == trafficLights[1].color && trafficLights[0].color == LightsClass.Lights.AMBER) return;
         TrafficLightsClass.TrafficLights.PgaAndIsGreen pgaG = new TrafficLightsClass.TrafficLights.PgaAndIsGreen(0,false);
-
         pgaG=trafficLights[0].FindGreenOrAmber(this);
-        if (trafficLights[pga].color.timeToGoOff-- == 0) {
-            if (!isGreen) {
-                trafficLights[pga].color = LightsClass.Lights.RED;
-                if (trafficLights[pga].position == 4) this.Reset(false);
+        if (trafficLights[pgaG.pga].color.timeToGoOff-- == 0) {
+            if (!pgaG.isGreen) {
+                trafficLights[pgaG.pga].color = LightsClass.Lights.RED;
+                if (trafficLights[pgaG.pga].position == 4) this.Reset(false);
                 else {
-                    trafficLights[pga + 1].color = LightsClass.Lights.GREEN;
-                    trafficLights[pga + 1].color.timeToGoOff = 15;
+                    trafficLights[pgaG.pga + 1].color = LightsClass.Lights.GREEN;
+                    trafficLights[pgaG.pga + 1].color.timeToGoOff = 15;
                 }
             } else {
-                trafficLights[pga].color = LightsClass.Lights.AMBER;
-                trafficLights[pga].color.timeToGoOff = 5;
+                trafficLights[pgaG.pga].color = LightsClass.Lights.AMBER;
+                trafficLights[pgaG.pga].color.timeToGoOff = 5;
             }
         }
     }
