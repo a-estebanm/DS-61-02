@@ -39,16 +39,7 @@ public class TrafficLightsClass {
         }
 
     }
-    /*public static class PgaAndIsGreen extends TrafficJunction {
-        public int pga;
-        public boolean isGreen;
-        public PgaAndIsGreen() {
 
-
-
-        }
-
-    }*/
 
  public static TrafficJunction.PgaAndIsGreen FindGreenOrAmber(TrafficJunction o){
     TrafficJunction.PgaAndIsGreen pgaG = new TrafficJunction.PgaAndIsGreen();
