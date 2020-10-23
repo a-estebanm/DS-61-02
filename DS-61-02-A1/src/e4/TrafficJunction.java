@@ -60,7 +60,7 @@ public class TrafficJunction {
      */
     public void amberJunction(boolean active) {
         if (active) {
-            for (int i = 0; i < 4; i++) trafficLights[i].color = LightsClass.Lights.AMBER;
+            trafficLights[0].AmberOn(this);
         } else {
             this.trafficLights[0].Reset(this,true);
         }

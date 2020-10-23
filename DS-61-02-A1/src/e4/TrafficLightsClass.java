@@ -32,6 +32,12 @@ public class TrafficLightsClass {
             }
         }
 
+        public void AmberOn(TrafficJunction o){
+
+            for (int i = 0; i < 4; i++) o.trafficLights[i].color = LightsClass.Lights.AMBER;
+
+        }
+
     }
     /*public static class PgaAndIsGreen extends TrafficJunction {
         public int pga;
