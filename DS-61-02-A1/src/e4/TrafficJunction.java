@@ -4,7 +4,7 @@ import static e4.TrafficLightsClass.FindGreenOrAmber;
 
 public class TrafficJunction {
 
-    public LightsClass.Lights[] lights;
+    private final LightsClass.Lights[] lights;
     public TrafficLightsClass.TrafficLights[] trafficLights;
 
 
@@ -12,7 +12,7 @@ public class TrafficJunction {
     static class PgaAndIsGreen {
         public int pga;
         public boolean isGreen;
-        public PgaAndIsGreen(int pga, boolean isGreen) { this.pga = pga; this.isGreen = isGreen; }
+
 
         PgaAndIsGreen() {
         }

@@ -1,6 +1,5 @@
 package e4;
 
-import java.security.KeyPair;
 
 public class LightsClass {
 
@@ -12,7 +11,6 @@ public class LightsClass {
         RED();
 
         public int timeToGoOff;
-        private TrafficLightsClass trafficLight;
 
         Lights(int timeToGoOff) {
             this.timeToGoOff = timeToGoOff;

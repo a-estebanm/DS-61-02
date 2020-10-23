@@ -7,10 +7,8 @@ public class TrafficLightsClass {
         NORTH(LightsClass.Lights.GREEN, 1),
         SOUTH(LightsClass.Lights.RED, 2),
         EAST(LightsClass.Lights.RED, 3),
-        WEST(LightsClass.Lights.RED, 4),
-        ALL(0);
+        WEST(LightsClass.Lights.RED, 4);
 
-        private static LightsClass.Lights lights;
         public final int position;
         public LightsClass.Lights color;
 
@@ -20,25 +18,7 @@ public class TrafficLightsClass {
 
         }
 
-        TrafficLights(int position) {
-            this.position = position;
-        }
 
-
-
-       /* PgaAndIsGreen FindGreenOrAmber(TrafficJunction o){
-            PgaAndIsGreen pgaG = new PgaAndIsGreen();
-            for (pgaG.pga=0; pgaG.pga < 4; pgaG.pga++) {
-
-                if (o.trafficLights[pgaG.pga].color == LightsClass.Lights.GREEN) {
-                    pgaG.isGreen = true;
-                    break;
-                } else if (o.trafficLights[pgaG.pga].color == LightsClass.Lights.AMBER) break;
-
-
-            }
-            return pgaG;
-        }*/
 
         void Reset(TrafficJunction o, boolean a) {
 
@@ -53,7 +33,7 @@ public class TrafficLightsClass {
         }
 
     }
-    public static class PgaAndIsGreen extends TrafficJunction {
+    /*public static class PgaAndIsGreen extends TrafficJunction {
         public int pga;
         public boolean isGreen;
         public PgaAndIsGreen() {
@@ -62,7 +42,7 @@ public class TrafficLightsClass {
 
         }
 
-    }
+    }*/
 
  public static TrafficJunction.PgaAndIsGreen FindGreenOrAmber(TrafficJunction o){
     TrafficJunction.PgaAndIsGreen pgaG = new TrafficJunction.PgaAndIsGreen();
