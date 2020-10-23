@@ -19,7 +19,7 @@ public class TrafficLightsClass {
         }
 
 
-        void Reset(TrafficJunction o, boolean a) {
+        static void Reset(TrafficJunction o, boolean a) {
 
             o.trafficLights[0].color = LightsClass.Lights.GREEN;
             o.trafficLights[0].color.timeToGoOff = 15;
@@ -31,7 +31,7 @@ public class TrafficLightsClass {
             }
         }
 
-        public void AmberOn(TrafficJunction o) {
+        public static void AmberOn(TrafficJunction o) {
 
             for (int i = 0; i < 4; i++) o.trafficLights[i].color = LightsClass.Lights.AMBER;
 

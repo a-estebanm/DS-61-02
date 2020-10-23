@@ -1,10 +1,12 @@
 package e4;
 
+import static e4.LightsClass.Lights.ChangeLight;
 import static e4.TrafficLightsClass.FindGreenOrAmber;
+import static e4.TrafficLightsClass.TrafficLights.AmberOn;
+import static e4.TrafficLightsClass.TrafficLights.Reset;
 
 public class TrafficJunction {
 
-    private final LightsClass.Lights[] lights;
     public TrafficLightsClass.TrafficLights[] trafficLights;
 
 
@@ -28,8 +30,6 @@ public class TrafficJunction {
      */
     public TrafficJunction() {
 
-         lights = new LightsClass.Lights[]{LightsClass.Lights.GREEN, LightsClass.Lights.AMBER, LightsClass.Lights.RED};
-
          trafficLights = new TrafficLightsClass.TrafficLights[]{TrafficLightsClass.TrafficLights.NORTH, TrafficLightsClass.TrafficLights.SOUTH, TrafficLightsClass.TrafficLights.EAST, TrafficLightsClass.TrafficLights.WEST};
 
 
@@ -44,10 +44,10 @@ public class TrafficJunction {
      */
     public void timesGoesBy() {
 
-        if (trafficLights[0].color == trafficLights[1].color && trafficLights[0].color == LightsClass.Lights.AMBER) return;
+        if (trafficLights[0].color == trafficLights[1].color && trafficLights[0].color == LightsClass.Lights.AMBER) return; // this checks that amberjunction is off
         PgaAndIsGreen pgaG;
         pgaG= FindGreenOrAmber(this);
-        this.lights[0].ChangeLight(this,pgaG);
+        ChangeLight(this,pgaG);
     }
 
     /**
@@ -60,9 +60,9 @@ public class TrafficJunction {
      */
     public void amberJunction(boolean active) {
         if (active) {
-            trafficLights[0].AmberOn(this);
+            AmberOn(this);
         } else {
-            this.trafficLights[0].Reset(this,true);
+            Reset(this,true);
         }
     }
 
