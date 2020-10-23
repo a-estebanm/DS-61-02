@@ -19,7 +19,6 @@ public class TrafficLightsClass {
         }
 
 
-
         void Reset(TrafficJunction o, boolean a) {
 
             o.trafficLights[0].color = LightsClass.Lights.GREEN;
@@ -32,7 +31,7 @@ public class TrafficLightsClass {
             }
         }
 
-        public void AmberOn(TrafficJunction o){
+        public void AmberOn(TrafficJunction o) {
 
             for (int i = 0; i < 4; i++) o.trafficLights[i].color = LightsClass.Lights.AMBER;
 
@@ -41,19 +40,20 @@ public class TrafficLightsClass {
     }
 
 
- public static TrafficJunction.PgaAndIsGreen FindGreenOrAmber(TrafficJunction o){
-    TrafficJunction.PgaAndIsGreen pgaG = new TrafficJunction.PgaAndIsGreen();
-    for (pgaG.pga=0; pgaG.pga < 4; pgaG.pga++) {
+    public static TrafficJunction.PgaAndIsGreen FindGreenOrAmber(TrafficJunction o) {
+        TrafficJunction.PgaAndIsGreen pgaG = new TrafficJunction.PgaAndIsGreen();
+        for (pgaG.pga = 0; pgaG.pga < 4; pgaG.pga++) {
 
-        if (o.trafficLights[pgaG.pga].color == LightsClass.Lights.GREEN) {
-            pgaG.isGreen = true;
+            if (o.trafficLights[pgaG.pga].color == LightsClass.Lights.GREEN) {
+                pgaG.isGreen = true;
 
-            break;
-        } else if (o.trafficLights[pgaG.pga].color == LightsClass.Lights.AMBER) break;
+                break;
+            } else if (o.trafficLights[pgaG.pga].color == LightsClass.Lights.AMBER) break;
 
 
+        }
+        return pgaG;
     }
-    return pgaG;
-}
+
 
 }
