@@ -5,8 +5,8 @@ import java.util.Random;
 public class Hero extends Character {
 
 
-    public Hero(int health, int armor) {
-        super(health, armor);
+    public Hero(int health, int armor, String name) {
+        super(health, armor, name);
     }
 
     @Override

@@ -5,8 +5,8 @@ import java.util.Random;
 public class Beast extends Character {
 
 
-    public Beast(int health, int armor) {
-        super(health, armor);
+    public Beast(int health, int armor, String name) {
+        super(health, armor, name);
     }
 
     @Override
