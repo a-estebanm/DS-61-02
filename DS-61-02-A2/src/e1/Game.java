@@ -21,15 +21,19 @@ public class Game {
         if(damage>armor) c2.setHealth(c2.getHealth() - (damage - armor));
 
     }
-    public boolean isDead(Character c2){
-        if (c2.getHealth()<0) c2.setHealth(0);
-        return c2.getHealth()<=0;
+
+    public void kill(Character c2){
+
+        if (c2.getHealth()<=0) System.out.print(c2.getClass().getSimpleName()+" "+c2.getName()+" dies!");
+        c2.getClass();
+
     }
 
     public static void main(String [] arg){
 
-        Orc c1 = new Orc(10,12, "juan josé esteban gómez");
-        System.out.print(c1.getName());
+        Orc c1 = new Orc(0,12, "juan josé esteban gómez");
+        System.out.print(c1.);
+       // c1.kill
 
     }
 
