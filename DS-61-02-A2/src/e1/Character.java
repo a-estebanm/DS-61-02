@@ -5,11 +5,13 @@ public abstract class Character {
     private int health;
     private int armor;
     private final String name;
+    Dice dice;
 
-    public Character(int health, int armor, String name){
+    public Character(int health, int armor, String name, Dice dice){
         this.health=health;
         this.armor=armor;
         this.name = name;
+        this.dice = dice;
     }
 
     public int getArmor() {
@@ -32,6 +34,9 @@ public abstract class Character {
         this.health = health;
     }
 
-    public abstract int force(int seed);
+  /*  public void setDice(Dice dice) {
+        this.dice = dice;
+    }*/
+
     public abstract int force();
 }
