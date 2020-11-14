@@ -2,10 +2,10 @@ package e1;
 
 import java.util.Random;
 
-public class Beast extends Character {
+public abstract class Beasts extends Character {
 
 
-    public Beast(int health, int armor, String name, Dice dice) {
+    public Beasts(int health, int armor, String name, Dice dice) {
         super(health, armor, name, dice);
     }
 

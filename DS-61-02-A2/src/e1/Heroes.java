@@ -2,10 +2,10 @@ package e1;
 
 import java.util.Random;
 
-public class Hero extends Character {
+public abstract class Heroes extends Character {
 
 
-    public Hero(int health, int armor, String name, Dice dice) {
+    public Heroes(int health, int armor, String name, Dice dice) {
         super(health, armor, name, dice);
     }
 

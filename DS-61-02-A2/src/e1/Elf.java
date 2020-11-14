@@ -1,6 +1,6 @@
 package e1;
 
-public class Elf extends Hero {
+public class Elf extends Heroes {
     public Elf(int health, int armor, String name, Dice dice) {
         super(health, armor, name, dice);
     }

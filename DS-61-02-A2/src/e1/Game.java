@@ -1,6 +1,5 @@
 package e1;
 
-import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 
 public class Game <T extends Character, V extends Character>{
@@ -14,17 +13,26 @@ public class Game <T extends Character, V extends Character>{
         this.list1=list1;
         this.list2=list2;
     }
-    public void checkLists(ArrayList <T> list1, ArrayList <V> list2){ //CHECK MORE
-        if(list1.isEmpty() || list2.isEmpty()) throw new IllegalArgumentException("Do not imput an empty list");
-        for (T c : list1) if (c.getClass() != list1.get(0).getClass()) throw new IllegalArgumentException("Don't insert different classes in a list");
-        for (V c : list2) if (c.getClass() != list2.get(0).getClass()) throw new IllegalArgumentException("Don't insert different classes in a list");
-        if(list1.get(0).getClass()==list2.get(0).getClass() && !list1.get(0).getClass().getSimpleName().equals("Character")) throw new IllegalArgumentException("Don't imput lists of the same class");
+    public void checkLists(){ //CHECK MORE
+        if(list1.isEmpty() || list2.isEmpty()) throw new IllegalArgumentException("Do not input an empty list"); //If one list is Empty there isn't a game to play
+        Class<?> l1 = list1.get(0).getClass().getSuperclass(); //We avoid calling multiple times this methods by creating this class variables
+        Class<?> l2 = list2.get(0).getClass().getSuperclass();
+        for (T c: list1) if (c.getClass().getSuperclass() != l1) throw new IllegalArgumentException("Don't insert different classes in a list");
+        for (V c : list2) if (c.getClass().getSuperclass() != l2) throw new IllegalArgumentException("Don't insert different classes in a list");
+        if(l1==l2) throw new IllegalArgumentException("Don't input lists of the same class");
     }
-    public void battle(ArrayList <T> list1, ArrayList <V> list2){
-
+    public void battle(){
+        checkLists();
+        int counter=1;
+        T c1;
+        V c2;
         while(!list1.isEmpty() && !list2.isEmpty()){
+            System.out.print("Turn "+ counter++ +":\n");
             for(int i =0 ; i < Math.min(list1.size(),list2.size()); i++){
-                fight(list1.get(i),list2.get(i), i);
+                c1 = list1.get(i);
+                c2 = list2.get(i);
+                System.out.print("Fight between "+ c1.getName()+" (Health = "+c1.getHealth()+") and "+c2.getName()+" (Health = "+c2.getHealth()+")\n");
+                fight(c1,c2);
             }
 
         }
@@ -33,39 +41,46 @@ public class Game <T extends Character, V extends Character>{
             return;
         }
         if(list1.isEmpty()){
-            System.out.print("");
-            return;
-        }
+            System.out.print(list2.get(0).getClass().getSuperclass().getSimpleName().toUpperCase()+" WIN!");
+        }else System.out.print(list1.get(0).getClass().getSuperclass().getSimpleName().toUpperCase()+" WIN!");
 
     }
 
-    public void fight(T c1, V c2, int counter){
+    public void fight(T c1, V c2){
         int damage = c1.force(c2);
         int armor = c2.getArmor(c1);
         int damage2 = c2.force(c1);
         int armor2 = c1.getArmor(c2);
         if(damage>armor) c2.setHealth(c2.getHealth() - (damage - armor));
         if(damage2>armor2) c1.setHealth(c1.getHealth() - (damage2 - armor2));
-
+        kill(c1, c2);
     }
 
 
-    public void kill( Character c2){
-
-        if (c2.getHealth()<=0) System.out.print(c2.getClass().getSimpleName()+" "+c2.getName()+" dies!");
-
-
-
+    public void kill( T c1, V c2) {
+        if (c1.getHealth() <= 0){
+            System.out.print(c1.getClass().getSimpleName() + " " + c1.getName() + " dies!\n");
+            list1.remove(c1);
+        }
+        if (c2.getHealth() <= 0){
+            System.out.print(c2.getClass().getSimpleName() + " " + c2.getName() + " dies!\n");
+            list2.remove(c2);
+        }
     }
 
     public static void main(String [] args){
-        Dice dice = new Dice(15);
-        Orc c1 = new Orc(0,12, "juan josé esteban gómez", dice);
-        Elf c2 = new Elf(0,2, "juan josé asdaesteban gómez", dice);
+        Dice dice = new Dice(1);
+        Orc c1 = new Orc(100,30, "orco malo", dice);
+        Goblin c3 = new Goblin(100,30, "goblin chunguillo", dice);
+        Hobbit c4 = new Hobbit(100,30, "Hobbit tonto", dice);
+        Elf c2 = new Elf(100,30, "Elfo amable", dice);
        // System.out.print(c1.dice.dice.nextInt(90)+"\n");
-        Game <Character,Beast> game = new Game<>(new ArrayList<>(), new ArrayList<>());
+        Game <Character, Character> game = new Game<>(new ArrayList<>(), new ArrayList<>());
         game.list1.add(c2);
-        game.list1.add(c1);
+        game.list2.add(c1);
+        game.list1.add(c4);
+        game.list2.add(c3);
+        game.battle();
 
     }
 
