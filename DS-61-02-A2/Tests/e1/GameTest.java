@@ -63,7 +63,7 @@ class GameTest {
         Elf c2 = new Elf(100,30, "Elf1", dice);
         Elf c3 = new Elf(100,30, "Elf2", dice);
         Elf c4 = new Elf(100,30, "Elf3", dice);
-        Elf c5 = new Elf(100,30, "Elf4", dice);
+        Hobbit c5 = new Hobbit(100,30, "Elf4", dice);
 
         Game <Character, Character> game = new Game<>(new ArrayList<>(), new ArrayList<>());
         game.getList1().add(c2);
