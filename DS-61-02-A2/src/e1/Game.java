@@ -24,7 +24,6 @@ public class Game <T extends Character, V extends Character>{
     }
 
     public Game(ArrayList <T> list1, ArrayList <V> list2){
-
         setList1(list1);
         setList2(list2);
     }
@@ -70,7 +69,6 @@ public class Game <T extends Character, V extends Character>{
         kill(c1, c2);
     }
 
-
     public void kill( T c1, V c2) {
         if (c1.getHealth() <= 0){
             System.out.print(c1.getClass().getSimpleName() + " " + c1.getName() + " dies!\n");
@@ -81,20 +79,4 @@ public class Game <T extends Character, V extends Character>{
             list2.remove(c2);
         }
     }
-
-    /*public static void main(String [] args){
-        Dice dice = new Dice();
-        Orc c1 = new Orc(100,30, "orco malo", dice);
-        Goblin c3 = new Goblin(100,30, "goblin chunguillo", dice);
-        Hobbit c4 = new Hobbit(100,30, "Hobbit tonto", dice);
-        Elf c2 = new Elf(100,30, "Elfo amable", dice);
-       // System.out.print(c1.dice.dice.nextInt(90)+"\n");
-        Game <Character, Character> game = new Game<>(new ArrayList<>(), new ArrayList<>());
-        game.list1.add(c2);
-        game.list2.add(c1);
-        game.list1.add(c4);
-        game.list2.add(c3);
-        game.battle();
-    }*/
-
 }
