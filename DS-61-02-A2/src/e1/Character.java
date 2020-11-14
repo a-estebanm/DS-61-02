@@ -5,21 +5,17 @@ public abstract class Character {
     private int health;
     private int armor;
     private final String name;
-    private Dice dice;
+    private final Dice dice;
 
     public Character(int health, int armor, String name, Dice dice){
-        this.health=health;
-        this.armor=armor;
+        setHealth(health);
+        setArmor(armor);
         this.name = name;
-        this.dice = dice;
+        this.dice=dice;
     }
 
     public Dice getDice() {
         return dice;
-    }
-
-    public void setDice(Dice dice) {
-        this.dice = dice;
     }
 
     public int getArmor(Character c1) {

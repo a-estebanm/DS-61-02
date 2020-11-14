@@ -11,9 +11,10 @@ class GameTest {
     Dice dice = new Dice(1);
     Orc c1 = new Orc(100,101, "OP orc", dice);
     Elf c2 = new Elf(100,30, "Elf1", dice);
+    Elf c6 = new Elf(100,30, "Elf2", dice);
     Hobbit c3 = new Hobbit(100,30, "Hobbit", dice);
     Human c4 = new Human(100,30, "Human", dice);
-    Elf c5 = new Elf(100,30, "Elf4", dice);
+    Goblin c5 = new Goblin(100,30, "Goblin", dice);
 
     @Test
     void checkListsTest(){
@@ -35,7 +36,9 @@ class GameTest {
         Game <Character, Character> game4 = new Game<>(new ArrayList<>(), new ArrayList<>()); // different classes in a list
         game.getList1().add(c1);
         game.getList1().add(c2);
+        game.getList1().add(c5);
 
+        game.getList2().add(c6);
         game.getList2().add(c3);
         game.getList2().add(c4);
         assertThrows(IllegalArgumentException.class, game4::checkLists);

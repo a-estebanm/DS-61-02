@@ -25,8 +25,8 @@ public class Game <T extends Character, V extends Character>{
 
     public Game(ArrayList <T> list1, ArrayList <V> list2){
 
-        this.list1=list1;
-        this.list2=list2;
+        setList1(list1);
+        setList2(list2);
     }
     public void checkLists(){ //CHECK MORE
         if(list1.isEmpty() || list2.isEmpty()) throw new IllegalArgumentException("Do not input an empty list"); //If one list is Empty there isn't a game to play
@@ -82,7 +82,7 @@ public class Game <T extends Character, V extends Character>{
         }
     }
 
-    public static void main(String [] args){
+    /*public static void main(String [] args){
         Dice dice = new Dice();
         Orc c1 = new Orc(100,30, "orco malo", dice);
         Goblin c3 = new Goblin(100,30, "goblin chunguillo", dice);
@@ -95,7 +95,6 @@ public class Game <T extends Character, V extends Character>{
         game.list1.add(c4);
         game.list2.add(c3);
         game.battle();
-
-    }
+    }*/
 
 }
