@@ -12,7 +12,7 @@ public abstract class Beasts extends Character {
     @Override
 
     public int force(Character c2){
-        return dice.forceB();
+        return getDice().forceB();
     }
 
 }
