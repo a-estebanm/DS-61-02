@@ -5,7 +5,7 @@ public abstract class Character {
     private int health;
     private int armor;
     private final String name;
-    Dice dice;
+    protected Dice dice;
 
     public Character(int health, int armor, String name, Dice dice){
         this.health=health;
@@ -14,9 +14,9 @@ public abstract class Character {
         this.dice = dice;
     }
 
-    public int getArmor() {
-        return armor;
-    }
+    public int getArmor(Character c2) {
+        if(c2.getClass().getSimpleName().equals("Orc")) return armor*=0.9;
+        return armor; }
 
     public int getHealth() {
         return health;
@@ -34,9 +34,5 @@ public abstract class Character {
         this.health = health;
     }
 
-  /*  public void setDice(Dice dice) {
-        this.dice = dice;
-    }*/
-
-    public abstract int force();
+    public abstract int force(Character c2);
 }

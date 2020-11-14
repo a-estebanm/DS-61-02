@@ -11,7 +11,7 @@ public class Hero extends Character {
 
     @Override
 
-    public int force(){
+    public int force(Character c2){
         return dice.forceH();
     }
 

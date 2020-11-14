@@ -11,7 +11,7 @@ public class Beast extends Character {
 
     @Override
 
-    public int force(){
+    public int force(Character c2){
         return dice.forceB();
     }
 
