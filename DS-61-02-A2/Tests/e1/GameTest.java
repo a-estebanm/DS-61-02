@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class GameTest {
     Dice dice = new Dice(1);
     Orc c1 = new Orc(100,101, "OP orc", dice);
