@@ -78,7 +78,7 @@ class GameTest {
         game.getList2().add(c1);
         game.getList2().add(c6);
         game.battle();
-        //It is almost
+
         assertFalse(game.getList2().isEmpty());
         assertTrue(game.getList1().isEmpty());
     }
