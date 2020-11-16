@@ -1,9 +1,6 @@
 package e2;
 
-import javax.imageio.ImageTranscoder;
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Iterator;
 
 public class Matrix {
 
@@ -75,11 +72,9 @@ public class Matrix {
 
     public static void main(String[] args){
 
-        Matrix mat = new Matrix(7,4);
-        mat.matrix[0][1]=3;
+        Matrix mat = new Matrix(1000,0);
 
         System.out.print(mat.toString());
-
     }
 
 
