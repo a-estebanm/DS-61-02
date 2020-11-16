@@ -55,12 +55,7 @@ public class Matrix {
 
     @Override
     public String toString() {
-        int i=0;
-        StringBuilder matrix = new StringBuilder();
-        for (int[] ints : this.matrix) {
-            matrix.insert(i++ * col,"["+ints+"]");
-        }
-        return matrix.toString();
+        return Arrays.deepToString(this.matrix).replace("], ","]\n").replace("[[","[").replace("]]","]");
     }
 
     public boolean isValid (int[][] a) {//NO FUNCIONA BIEN
@@ -80,10 +75,10 @@ public class Matrix {
 
     public static void main(String[] args){
 
-    Matrix mat = new Matrix(1,2);
-    mat.matrix[0][1]=3;
+        Matrix mat = new Matrix(7,4);
+        mat.matrix[0][1]=3;
 
-    System.out.print(mat.toString());
+        System.out.print(mat.toString());
 
     }
 
