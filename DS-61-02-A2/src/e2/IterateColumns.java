@@ -6,21 +6,20 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 public class IterateColumns implements Iterator <Integer> {
+
     private final Matrix matrix;
     private int col;
     private int row;
-    private final int totalSize;
 
-    public IterateColumns( Matrix matrix){
+    public IterateColumns(Matrix matrix){
         this.matrix=matrix;
         this.col=0;
-        this.row=0;
-        this.totalSize=matrix.getCol()* matrix.getRow();
+        this.row=-1;
     }
 
     @Override
     public boolean hasNext() {
-        return col*row < totalSize;
+        return col*row < matrix.getCol()* matrix.getRow();
     }
 
 
@@ -35,7 +34,7 @@ public class IterateColumns implements Iterator <Integer> {
     }
 
     public void updatePosition(){
-        if(++row> matrix.getRow()){
+        if(++row == matrix.getRow()){
             col++;
             row=0;
         }

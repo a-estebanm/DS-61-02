@@ -1,23 +1,33 @@
 package e2;
 
 import java.util.Arrays;
+import java.lang.Iterable;
+import java.util.Iterator;
 
-public class Matrix {
+public class Matrix implements Iterable <Integer>  {
 
-   private int[][] matrix;
+    private int[][] matrix;
     private int row;
     private int col;
+    private Iterator <Integer> iterator;
+    //private final boolean rC;
 
-    public Matrix(int row, int col){
+    public Matrix(int row, int col, boolean rC){
         if(row<=0|| col<=0 ) throw new IllegalArgumentException("Wrong array size, input a positive integer");
-        this.row=row;
-        this.col=col;
+        this.row = row;
+        this.col = col;
         matrix = new int[row][col]; //It initializes to all zeroes
+
+        if(rC) this.iterator = new IterateRows(this);
+        else this.iterator = new IterateColumns(this);
+
     }
     public Matrix(int[][] a){
         if(!isValid(a)) throw new IllegalArgumentException("The inputed matrix isn't valid");
         matrix=a;
     }
+
+    public Iterator<Integer> iterator() { return iterator; }
 
     public int getCol() {
         return col;
@@ -39,6 +49,7 @@ public class Matrix {
     public int[][] getMatrix() {
         return matrix;
     }
+
     public int[] getRowColumn(int rowCol, boolean row){
         int [] columnArray = new int[this.col];
         if (row){//If you want to get the row
@@ -72,9 +83,17 @@ public class Matrix {
 
     public static void main(String[] args){
 
-        Matrix mat = new Matrix(1000,0);
+        Matrix mat = new Matrix(2,2, true);
+        mat.matrix[0][0]=1;
+        mat.matrix[0][1]=2;
+        mat.matrix[1][0]=3;
+        mat.matrix[1][1]=4;
 
         System.out.print(mat.toString());
+        System.out.print(mat.iterator().next());
+        System.out.print(mat.iterator().next());
+        System.out.print(mat.iterator().next());
+        System.out.print(mat.iterator().next());
     }
 
 

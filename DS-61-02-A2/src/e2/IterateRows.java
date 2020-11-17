@@ -10,18 +10,16 @@ public class IterateRows implements Iterator<Integer> {
     private final Matrix matrix;
     private int col;
     private int row;
-    private final int totalSize;
 
     public IterateRows( Matrix matrix){
         this.matrix=matrix;
-        this.col=0;
+        this.col=-1;
         this.row=0;
-        this.totalSize=matrix.getCol()* matrix.getRow();
     }
 
     @Override
     public boolean hasNext() {
-        return col*row < totalSize;
+        return col*row < matrix.getCol()* matrix.getRow();
     }
 
 
@@ -36,7 +34,7 @@ public class IterateRows implements Iterator<Integer> {
     }
 
     public void updatePosition(){
-        if(++col> matrix.getCol()){
+        if(++col == matrix.getCol()){
             row++;
             col=0;
         }
