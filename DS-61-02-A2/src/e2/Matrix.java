@@ -58,9 +58,10 @@ public class Matrix implements Iterable <Integer>  {
     }
 
     public int getValue(int row, int col){
-        if (row>this.row||row<0||col>this.col||col<0) throw new IllegalArgumentException("Incorrect row or column value");
+        if (row>=this.row||row<0||col>=this.col||col<0) throw new IllegalArgumentException("Incorrect row or column value");
         return matrix[row][col];
     }
+
     public void setValue(int row, int col, int value){
         if (row>this.row||row<0||col>this.col||col<0) throw new IllegalArgumentException("Incorrect row or column value");
         matrix[row][col]=value;

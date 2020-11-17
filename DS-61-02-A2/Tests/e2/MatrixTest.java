@@ -99,7 +99,8 @@ class MatrixTest {
         Matrix mat = new Matrix(matrix1);
         int val = 4;
         assertEquals( mat.getValue(1,0), val );
-
+        assertThrows(IllegalArgumentException.class, () -> mat.getValue(0, 3));
+        assertThrows(IllegalArgumentException.class, () -> mat.getValue(6, 3));
     }
 
 
