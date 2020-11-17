@@ -19,7 +19,7 @@ public class IterateColumns implements Iterator <Integer> {
 
     @Override
     public boolean hasNext() {
-        return col*row < matrix.getCol()* matrix.getRow();
+        return (col+1)*(row+1) < matrix.getCol()* matrix.getRow();
     }
 
 

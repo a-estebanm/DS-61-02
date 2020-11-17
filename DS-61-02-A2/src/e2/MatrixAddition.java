@@ -18,14 +18,14 @@ public class MatrixAddition {
         this.row = matrix1.getRow();
         this.col = matrix1.getCol();
         if (col != matrix2.getCol() || row != matrix2.getRow()) throw new ArithmeticException();
-        this.matrix1 = matrix1;
-        this.matrix2 = matrix2;
-        if (matrix1.iterator() != matrix2.iterator()) matrix2.setIterator(matrix1.getrC());
+        this.matrix1 = new Matrix(matrix1);
+        this.matrix2 = new Matrix(matrix2);
+        if (matrix1.iterator() != matrix2.iterator()) this.matrix2.setIterator(matrix1.getrC());
         this.rC = matrix1.getrC();
     }
 
 
-    public Matrix Addition(Matrix matrix1, Matrix matrix2) {
+    public Matrix Addition() {
 
         Matrix matrixAdd = new Matrix(row, col, rC);
         if (rC) {
