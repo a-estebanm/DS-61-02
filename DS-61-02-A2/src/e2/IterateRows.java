@@ -32,7 +32,6 @@ public class IterateRows implements Iterator<Integer> {
         throw new NoSuchElementException();
     }
 
-
     public void updatePosition(){
         if(++col == matrix.getCol()){
             row++;
