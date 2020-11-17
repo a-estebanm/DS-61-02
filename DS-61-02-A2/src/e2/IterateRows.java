@@ -19,9 +19,8 @@ public class IterateRows implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        return col*row < matrix.getCol()* matrix.getRow();
+        return (col+1)*(row+1) < (matrix.getCol())* (matrix.getRow());
     }
-
 
     @Override
     public Integer next() {
@@ -32,6 +31,7 @@ public class IterateRows implements Iterator<Integer> {
         }
         throw new NoSuchElementException();
     }
+
 
     public void updatePosition(){
         if(++col == matrix.getCol()){

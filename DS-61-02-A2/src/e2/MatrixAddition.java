@@ -4,36 +4,40 @@ import java.util.Arrays;
 import java.lang.Iterable;
 import java.util.Iterator;
 
-public class MatrixAddition implements Iterable <Integer> {
+public class MatrixAddition {
 
-    private Iterator <Integer> iterator;
-    private final int[][] matrix1;
-    private final int[][] matrix2;
-    int row;
-    int col;
+    private Iterator<Integer> iterator;
+    private final Matrix matrix1;
+    private final Matrix matrix2;
+    private int row;
+    private int col;
+    private final boolean rC;
 
-    public MatrixAddition (Matrix matrix1, Matrix matrix2){
-        this.matrix1 = matrix1.getMatrix();
-        this.matrix2 = matrix2.getMatrix();
-        this.row =
+
+    public MatrixAddition(Matrix matrix1, Matrix matrix2) {
+        this.row = matrix1.getRow();
+        this.col = matrix1.getCol();
+        if (col != matrix2.getCol() || row != matrix2.getRow()) throw new ArithmeticException();
+        this.matrix1 = matrix1;
+        this.matrix2 = matrix2;
+        if (matrix1.iterator() != matrix2.iterator()) matrix2.setIterator(matrix1.getrC());
+        this.rC = matrix1.getrC();
     }
 
-    public Iterator<Integer> iterator() { return iterator; }
 
-    public Matrix Addition(Matrix matrix1, Matrix matrix2){
+    public Matrix Addition(Matrix matrix1, Matrix matrix2) {
 
-        Matrix matrixAdd;
-
-
-        if(matrix1.getCol()!=matrix2.getCol() || matrix1.getRow()!=matrix2.getRow())
-            throw new ArithmeticException();
-
-        for (Integer t : matrix1) {
-            for (Integer p : matrix1) {
-                matrixAdd.getMatrix()[t][p]=
-
+        Matrix matrixAdd = new Matrix(row, col, rC);
+        if (rC) {
+            for (int i = 0; i < matrixAdd.getRow(); i++) {
+                for (int z = 0; z < matrixAdd.getCol(); z++)
+                    matrixAdd.getMatrix()[i][z] = matrix1.iterator().next() + matrix2.iterator().next();
             }
-
+        } else {
+            for (int i = 0; i < matrixAdd.getCol(); i++) {
+                for (int z = 0; z < matrixAdd.getRow(); z++)
+                    matrixAdd.getMatrix()[z][i] = matrix1.iterator().next() + matrix2.iterator().next();
+            }
         }
         return matrixAdd;
     }

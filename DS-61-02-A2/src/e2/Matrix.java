@@ -3,6 +3,8 @@ package e2;
 import java.util.Arrays;
 import java.lang.Iterable;
 import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 public class Matrix implements Iterable <Integer>  {
 
@@ -10,23 +12,32 @@ public class Matrix implements Iterable <Integer>  {
     private int row;
     private int col;
     private Iterator <Integer> iterator;
-    //private final boolean rC;
+    private boolean rC;
 
     public Matrix(int row, int col, boolean rC){
         if(row<=0|| col<=0 ) throw new IllegalArgumentException("Wrong array size, input a positive integer");
         this.row = row;
         this.col = col;
+        this.rC=rC;
         matrix = new int[row][col]; //It initializes to all zeroes
 
         if(rC) this.iterator = new IterateRows(this);
         else this.iterator = new IterateColumns(this);
 
     }
+
+    public void setIterator(boolean rowCol) {
+        if (rowCol) this.iterator = new IterateRows(this);
+        else this.iterator = new IterateColumns(this);
+    }
+
     public Matrix(int[][] a){
         if(!isValid(a)) throw new IllegalArgumentException("The inputed matrix isn't valid");
         matrix=a;
     }
-
+    public boolean getrC() {
+        return rC;
+    }
     public Iterator<Integer> iterator() { return iterator; }
 
     public int getCol() {
@@ -57,16 +68,16 @@ public class Matrix implements Iterable <Integer>  {
             return matrix[rowCol];
         }
         if (rowCol>this.col||rowCol<0) throw new IllegalArgumentException("Incorrect column value");
-        for(int i=0; i<matrix[0].length;i++,columnArray[i]=matrix[i][rowCol]); //We insert the numbers of the wanted column into the array
+        for(int i=0; i<matrix[0].length;i++)columnArray[i]=matrix[i][rowCol]; //We insert the numbers of the wanted column into the array
         return columnArray;
     }
 
     @Override
     public String toString() {
-        return Arrays.deepToString(this.matrix).replace("], ","]\n").replace("[[","[").replace("]]","]");
+        return Arrays.deepToString(this.matrix).replace("], ","]\n").replace("[[","[").replace("]]","]")+"\n";
     }
 
-    public boolean isValid (int[][] a) {//NO FUNCIONA BIEN
+    public boolean isValid (int[][] a) {
         int i = 0;
         if (a == null) return false;
         for (int[] ints : a) {
@@ -83,42 +94,32 @@ public class Matrix implements Iterable <Integer>  {
 
     public static void main(String[] args){
 
-        Matrix mat = new Matrix(2,2, true);
-        mat.matrix[0][0]=1;
-        mat.matrix[0][1]=2;
-        mat.matrix[1][0]=3;
-        mat.matrix[1][1]=4;
+        Matrix mat = new Matrix(2,2, false);
+        mat.matrix[0][0]=2;
+        mat.matrix[0][1]=3;
+        mat.matrix[1][0]=1;
+        mat.matrix[1][1]=1;
+        Matrix mat2 = new Matrix(2,2, true);
+        mat2.matrix[0][0]=4;
+        mat2.matrix[0][1]=2;
+        mat2.matrix[1][0]=1;
+        mat2.matrix[1][1]=1;
 
-        System.out.print(mat.toString());
-        System.out.print(mat.iterator().next());
-        System.out.print(mat.iterator().next());
-        System.out.print(mat.iterator().next());
-        System.out.print(mat.iterator().next());
+        System.out.print(mat.toString()+"\n");
+        System.out.print(mat2.toString()+"\n");
+        System.out.print( new  MatrixAddition(mat,mat2).Addition(mat,mat2));
+
     }
 
-
-   /*public static boolean isKeypadValid ( char [][] keypad ) {
-        int i = 0;
-        if (keypad==null) return false;
-        char[] result = {'1','2','3','4','5','6','7','8','9','0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-        if (keypad[0].length>1 && keypad[0][1]=='2'){ //Here we check orientation of the sequence (vertical or horizontal)
-            for (char[] chars : keypad) {
-                if (chars == null) return false;
-                for (int col = 0; col < chars.length; col++, i++) {
-                    if (chars[col] != result[i]) return false;
-                }
-            }
-            return i == (keypad[0].length * keypad.length); 	// checks if its rectangular
-        } else if (keypad[0].length>1 || keypad.length>1){
-            for (int col=0; col<keypad[0].length; col++){
-                for(int row=0; row< keypad.length; row++,i++) {
-                    if (keypad[row]!=null && keypad[row][col]!=result[i]) return false;
-                }
-            }
-            return i == (keypad[0].length * keypad.length);
-        } else {
-            return keypad[0][0] == '1';//We check that the first element is a 1
+    /*@Override
+    public void forEach(Consumer<? super Integer> action) {
+        for (T t : this) {
+            action.accept(t);
         }
-    }*/
+    }
 
+    @Override
+    public Spliterator<Integer> spliterator() {
+        return null;
+    }*/
 }
