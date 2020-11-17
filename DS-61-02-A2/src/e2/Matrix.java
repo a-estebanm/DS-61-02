@@ -39,7 +39,7 @@ public class Matrix implements Iterable <Integer>  {
         return rC;
     }
 
-    public Matrix(Matrix a){
+    public Matrix(Matrix a){ //Clone
         this.row = a.row;
         this.col = a.col;
         this.rC=a.rC;
@@ -103,7 +103,7 @@ public class Matrix implements Iterable <Integer>  {
 
     public static void main(String[] args){
 
-        Matrix mat = new Matrix(2,2, true);
+        Matrix mat = new Matrix(3,2, true);
         mat.matrix[0][0]=2;
         mat.matrix[0][1]=3;
         mat.matrix[1][0]=1;
@@ -120,6 +120,9 @@ public class Matrix implements Iterable <Integer>  {
        System.out.print( new  MatrixAddition(mat,mat2).Addition());
         System.out.print( new  MatrixAddition(mat,mat2).Addition());
         System.out.print(mat2.iterator().next()+"\n");
+        System.out.print(mat2.iterator().next()+"\n");
+        System.out.print( new  MatrixAddition(mat,mat2).Addition());
+        System.out.print( new  MatrixAddition(mat,mat2).Addition());
 
 
         System.out.print(mat2.iterator().getClass().getSimpleName()+"\n");
