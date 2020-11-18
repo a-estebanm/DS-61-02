@@ -26,15 +26,19 @@ public class Matrix implements Iterable <Integer>  {
 
     }
 
+    public Matrix(int[][] a){ //Le faltaba el iterator y el rC
+        if(!isValid(a)) throw new IllegalArgumentException("The inputed matrix isn't valid");
+        matrix=a;
+        rC = true; //We initialize this matrix to have a RowColumn iterator
+        setIterator(rC);
+
+    }
+
     public void setIterator(boolean rowCol) {
         if (rowCol) this.iterator = new IterateRows(this);
         else this.iterator = new IterateColumns(this);
     }
 
-    public Matrix(int[][] a){
-        if(!isValid(a)) throw new IllegalArgumentException("The inputed matrix isn't valid");
-        matrix=a;
-    }
     public boolean getrC() {
         return rC;
     }
@@ -71,7 +75,17 @@ public class Matrix implements Iterable <Integer>  {
         return matrix;
     }
 
-    public int[] getRowColumn(int rowCol, boolean row){
+    public int[][] copyMatrix(int [][] a){ //PARA COPIAR MIRAR MEJOR
+        int index = 0;
+        int [][] copy = new int[row][col];
+        for (int [] ints : a){
+           copy[index] = Arrays.copyOf(ints,row);
+           index++;
+        }
+        return copy;
+    }
+
+    public int[] getRowColumn(int rowCol, boolean row){ //HAY QUE COPIAR Y ESTAMOS DANDO POR REFERENCIA EL ROW O COL ARRAY
         int [] columnArray = new int[this.col];
         if (row){//If you want to get the row
             if (rowCol >= this.row||rowCol<0) throw new IllegalArgumentException("Incorrect row value");
@@ -102,7 +116,11 @@ public class Matrix implements Iterable <Integer>  {
         return false;
     }
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
+         int[][] matrix1
+                = {{1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}};
 
         Matrix mat = new Matrix(2,2, true);
         mat.matrix[0][0]=2;
@@ -115,9 +133,11 @@ public class Matrix implements Iterable <Integer>  {
         mat2.matrix[1][0]=1;
         mat2.matrix[1][1]=1;
 
+        Matrix mat3 = new Matrix(matrix1);
+
         System.out.print(mat.toString()+"\n");
-        System.out.print(mat2.toString()+"\n");
-        System.out.print(mat2.iterator().getClass().getSimpleName()+"\n");
+        System.out.print(mat3.col+"\n");
+        System.out.print(mat3.iterator().getClass().getSimpleName()+"\n");
         System.out.print( new  MatrixAddition(mat,mat2).Addition());
         System.out.print( new  MatrixAddition(mat,mat2).Addition());
         System.out.print(mat2.iterator().next()+"\n");
@@ -131,5 +151,5 @@ public class Matrix implements Iterable <Integer>  {
 
 
 
-    }
+    }*/
 }

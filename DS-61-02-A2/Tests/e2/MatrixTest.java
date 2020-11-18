@@ -64,15 +64,20 @@ class MatrixTest {
         assertFalse(mat.isValid(matrix4));
     }
 
-    /*
+
     @Test
-    void constructorsTest(){
-        Matrix mat = new Matrix(matrix2);
-        assertThrows(() -> Matrix(matrix2), IllegalArgumentException.class);
+    void constructorsTestExceptions(){
+        //Matrix mat = new Matrix(matrix2);  //POR QUÉ ESTO?
+        assertThrows(IllegalArgumentException.class, () -> new Matrix(-1,0,true));
+        assertThrows(IllegalArgumentException.class, () -> new Matrix(0,0,true));
+        assertThrows(IllegalArgumentException.class, () -> new Matrix(0,-1,true));
+        assertThrows(IllegalArgumentException.class, () -> new Matrix(matrix2));
+        assertDoesNotThrow(()->new Matrix(1,1,false));
+        assertDoesNotThrow(()->new Matrix(matrix1));
     }
-    */
+
     @Test
-    void constructorsTest(){
+    void constructorsTest(){ //no sería mejor toString test?
         Matrix mat = new Matrix(matrix1);
         assertEquals(mat.toString(), "[1, 2, 3]\n" + "[4, 5, 6]\n" + "[7, 8, 9]\n");
 
@@ -87,8 +92,10 @@ class MatrixTest {
     @Test
     void getRowColumnTest(){
         Matrix mat = new Matrix(matrix1);
-        int[] array = {4,5,6};
-        assertArrayEquals(mat.getRowColumn(1, true), array );
+        int[] array1 = {4,5,6};
+        int[] array2 = {2,5,8};
+        assertArrayEquals(mat.getRowColumn(1, true), array1 );
+        assertArrayEquals(mat.getRowColumn(1, false), array2 );
 
         assertThrows(IllegalArgumentException.class, () -> mat.getRowColumn(-1, true));  // incorrect row value
         assertThrows(IllegalArgumentException.class, () -> mat.getRowColumn(5, false));
@@ -100,8 +107,28 @@ class MatrixTest {
         int val = 4;
         assertEquals( mat.getValue(1,0), val );
         assertThrows(IllegalArgumentException.class, () -> mat.getValue(0, 3));
-        assertThrows(IllegalArgumentException.class, () -> mat.getValue(6, 3));
+        assertThrows(IllegalArgumentException.class, () -> mat.getValue(6, 2));
+    }
+    @Test
+    void setValueTest(){
+        Matrix ale = new Matrix(matrix1);
+        assertEquals(ale.toString(), "[1, 2, 3]\n" + "[4, 5, 6]\n" + "[7, 8, 9]\n");
+        ale.setValue(1,1,21);
+        assertEquals(ale.toString(), "[1, 2, 3]\n" + "[4, 21, 6]\n" + "[7, 8, 9]\n");
+        assertThrows(IllegalArgumentException.class, () -> ale.setValue(0, 3,2));
+        assertThrows(IllegalArgumentException.class, () -> ale.setValue(6, 3,2));
     }
 
+    @Test
+    void matrixAdditionTest(){
+        Matrix mat1 = new Matrix(matrix1);
+        Matrix mat2 = new Matrix(matrix1);
+        mat1.setIterator(false);
+       // MatrixAddition addition = new MatrixAddition(mat1,mat2);
+        assertEquals(new MatrixAddition(mat1,mat2).Addition().toString(), "[2, 4, 6]\n" + "[8, 10, 12]\n" + "[14, 16, 18]\n");
+        assertEquals(new MatrixAddition(mat2,mat1).Addition().toString(), "[2, 4, 6]\n" + "[8, 10, 12]\n" + "[14, 16, 18]\n");
+
+
+    }
 
 }
