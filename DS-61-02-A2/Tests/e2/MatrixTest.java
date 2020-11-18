@@ -95,8 +95,8 @@ class MatrixTest {
     @Test
     void getRowColumnTest(){
         Matrix mat = new Matrix(matrix1);
-        int[] array1 = {4,21,6};                                            //cambiando los 5 por 21 funcionaria
-        int[] array2 = {2,21,8};                                            //hace primero el setvalue a 21 cuando se hace el test general
+        int[] array1 = {4,5,6};                                            //cambiando los 5 por 21 funcionaria
+        int[] array2 = {2,5,8};                                            //hace primero el setvalue a 21 cuando se hace el test general
         assertArrayEquals(mat.getRowColumn(1, true), array1 ); 
         assertArrayEquals(mat.getRowColumn(1, false), array2 ); 
 
@@ -134,10 +134,15 @@ class MatrixTest {
     void matrixAdditionTest(){
         Matrix mat1 = new Matrix(matrix1);
         Matrix mat2 = new Matrix(matrix1);
-        mat1.setIterator(false);
         //MatrixAddition addition = new MatrixAddition(mat1,mat2);
         assertEquals(new MatrixAddition(mat1,mat2).Addition().toString(), "[2, 4, 6]\n" + "[8, 10, 12]\n" + "[14, 16, 18]\n");
         assertEquals(new MatrixAddition(mat2,mat1).Addition().toString(), "[2, 4, 6]\n" + "[8, 10, 12]\n" + "[14, 16, 18]\n");
+
+        Matrix mat3 = new Matrix(3,3, false);
+        mat3.setMatrix(matrix1);
+        assertEquals(new MatrixAddition(mat3,mat2).Addition().toString(), "[2, 4, 6]\n" + "[8, 10, 12]\n" + "[14, 16, 18]\n");
+        assertEquals(new MatrixAddition(mat3,mat1).Addition().toString(), "[2, 4, 6]\n" + "[8, 10, 12]\n" + "[14, 16, 18]\n");
+
     }
 
     @Test

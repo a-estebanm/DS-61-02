@@ -45,10 +45,5 @@ public class IterateColumns implements Iterator <Integer> {
         throw new UnsupportedOperationException("Remove isn't implemented, do not call it");
     }
 
-    @Override
-    public void forEachRemaining(Consumer<? super Integer> action) {
-        Objects.requireNonNull(action);
-        while (hasNext())
-            action.accept(next());
-    }
+
 }

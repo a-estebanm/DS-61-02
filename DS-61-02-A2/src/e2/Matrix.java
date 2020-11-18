@@ -3,8 +3,6 @@ package e2;
 import java.util.Arrays;
 import java.lang.Iterable;
 import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 public class Matrix implements Iterable <Integer>  {
 
@@ -28,7 +26,7 @@ public class Matrix implements Iterable <Integer>  {
 
     public Matrix(int[][] a){ //Le faltaba el iterator y el rC
         if(!isValid(a)) throw new IllegalArgumentException("The inputed matrix isn't valid");
-        matrix=a;
+        this.matrix=copyMatrix(a);
         rC = true; //We initialize this matrix to have a RowColumn iterator
         setIterator(rC);
 
@@ -48,7 +46,12 @@ public class Matrix implements Iterable <Integer>  {
         this.col = a.col;
         this.rC=a.rC;
         setIterator(rC);
-        this.matrix=a.matrix;
+        this.matrix=copyMatrix(a.matrix);
+    }
+
+    public void setMatrix(int[][] matrix) {
+        if (!isValid(matrix)) throw new IllegalArgumentException();
+        this.matrix = copyMatrix(matrix);
     }
 
     public Iterator<Integer> iterator() { return iterator; }
@@ -75,12 +78,11 @@ public class Matrix implements Iterable <Integer>  {
         return matrix;
     }
 
-    public int[][] copyMatrix(int [][] a){ //PARA COPIAR MIRAR MEJOR
-        int index = 0;
-        int [][] copy = new int[row][col];
-        for (int [] ints : a){
-           copy[index] = Arrays.copyOf(ints,row);
-           index++;
+    public int[][] copyMatrix(int [][] a){ //CREO QUE NOS ESTABAMOS EQUIVOCANDO ROW POR COLUMN AS ALWAYS
+        if (!isValid(a)) throw new IllegalArgumentException();
+        int [][] copy = new int[a.length][a[0].length];
+        for (int i = 0 ; i< a.length;i++){
+            System.arraycopy(a[i], 0, copy[i], 0, a[0].length);
         }
         return copy;
     }
@@ -92,7 +94,7 @@ public class Matrix implements Iterable <Integer>  {
             if (rowCol >= this.row||rowCol<0) throw new IllegalArgumentException("Incorrect row value");
             int[] dest_array = new int[matrix[rowCol].length];
             System.arraycopy(matrix[rowCol],0 , dest_array, 0, matrix[rowCol].length);
-            return matrix[rowCol];
+            return dest_array;
         }
         if (rowCol >= this.col||rowCol<0) throw new IllegalArgumentException("Incorrect column value");
         int[] dest_array = new int[matrix[rowCol].length];
@@ -113,8 +115,8 @@ public class Matrix implements Iterable <Integer>  {
             for (int z : ints) i++;
         }
         if (i == (a[0].length * a.length)) {
-            row = a[0].length;
-            col = a.length;
+            col = a[0].length;
+            row = a.length;
             return true;
         }
         return false;
