@@ -10,7 +10,7 @@ public class Matrix implements Iterable <Integer>  {
     private int row;
     private int col;
     private Iterator <Integer> iterator;
-    private boolean rC;
+    private final boolean rC;
 
     public Matrix(int row, int col, boolean rC){
         if(row<=0|| col<=0 ) throw new IllegalArgumentException("Wrong array size, input a positive integer");
@@ -97,7 +97,6 @@ public class Matrix implements Iterable <Integer>  {
             return dest_array;
         }
         if (rowCol >= this.col||rowCol<0) throw new IllegalArgumentException("Incorrect column value");
-        int[] dest_array = new int[matrix[rowCol].length];
         for(int i=0; i<matrix[0].length;i++)columnArray[i]=matrix[i][rowCol]; //We insert the numbers of the wanted column into the array
         return columnArray;
     }
