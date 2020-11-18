@@ -121,40 +121,5 @@ public class Matrix implements Iterable <Integer>  {
         return false;
     }
 
-    /*public static void main(String[] args){
-         int[][] matrix1
-                = {{1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}};
 
-        Matrix mat = new Matrix(2,2, true);
-        mat.matrix[0][0]=2;
-        mat.matrix[0][1]=3;
-        mat.matrix[1][0]=1;
-        mat.matrix[1][1]=1;
-        Matrix mat2 = new Matrix(2,2, true);
-        mat2.matrix[0][0]=4;
-        mat2.matrix[0][1]=2;
-        mat2.matrix[1][0]=1;
-        mat2.matrix[1][1]=1;
-
-        Matrix mat3 = new Matrix(matrix1);
-
-        System.out.print(mat.toString()+"\n");
-        System.out.print(mat3.col+"\n");
-        System.out.print(mat3.iterator().getClass().getSimpleName()+"\n");
-        System.out.print( new  MatrixAddition(mat,mat2).Addition());
-        System.out.print( new  MatrixAddition(mat,mat2).Addition());
-        System.out.print(mat2.iterator().next()+"\n");
-        System.out.print(mat2.iterator().next()+"\n");
-        System.out.print( new  MatrixAddition(mat,mat2).Addition());
-        System.out.print( new  MatrixAddition(mat,mat2).Addition());
-
-
-        System.out.print(mat2.iterator().getClass().getSimpleName()+"\n");
-        System.out.print(mat2.getRowColumn(1,true));
-
-
-
-    }*/
 }

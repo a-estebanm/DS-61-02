@@ -2,8 +2,7 @@ package e2;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.function.Consumer;
+
 
 public class IterateColumns implements Iterator <Integer> {
 

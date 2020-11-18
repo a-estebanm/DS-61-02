@@ -1,7 +1,6 @@
 package e2;
 
-import java.util.Arrays;
-import java.lang.Iterable;
+
 import java.util.Iterator;
 
 public class MatrixAddition {
@@ -9,8 +8,8 @@ public class MatrixAddition {
     private Iterator<Integer> iterator;
     private final Matrix matrix1;
     private final Matrix matrix2;
-    private int row;
-    private int col;
+    private final int row;
+    private final int col;
     private final boolean rC;
 
 
