@@ -67,7 +67,7 @@ public class Matrix implements Iterable <Integer>  {
     }
 
     public void setValue(int row, int col, int value){
-        if (row>this.row||row<0||col>this.col||col<0) throw new IllegalArgumentException("Incorrect row or column value");
+        if (row>=this.row||row<0||col>=this.col||col<0) throw new IllegalArgumentException("Incorrect row or column value");
         matrix[row][col]=value;
     }
 
@@ -87,11 +87,15 @@ public class Matrix implements Iterable <Integer>  {
 
     public int[] getRowColumn(int rowCol, boolean row){ //HAY QUE COPIAR Y ESTAMOS DANDO POR REFERENCIA EL ROW O COL ARRAY
         int [] columnArray = new int[this.col];
+
         if (row){//If you want to get the row
             if (rowCol >= this.row||rowCol<0) throw new IllegalArgumentException("Incorrect row value");
+            int[] dest_array = new int[matrix[rowCol].length];
+            System.arraycopy(matrix[rowCol],0 , dest_array, 0, matrix[rowCol].length);
             return matrix[rowCol];
         }
         if (rowCol >= this.col||rowCol<0) throw new IllegalArgumentException("Incorrect column value");
+        int[] dest_array = new int[matrix[rowCol].length];
         for(int i=0; i<matrix[0].length;i++)columnArray[i]=matrix[i][rowCol]; //We insert the numbers of the wanted column into the array
         return columnArray;
     }

@@ -3,6 +3,7 @@ package e2;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -67,17 +68,19 @@ class MatrixTest {
 
     @Test
     void constructorsTestExceptions(){
-        //Matrix mat = new Matrix(matrix2);  //POR QUÉ ESTO?
+
         assertThrows(IllegalArgumentException.class, () -> new Matrix(-1,0,true));
         assertThrows(IllegalArgumentException.class, () -> new Matrix(0,0,true));
         assertThrows(IllegalArgumentException.class, () -> new Matrix(0,-1,true));
         assertThrows(IllegalArgumentException.class, () -> new Matrix(matrix2));
+        assertThrows(IllegalArgumentException.class, () -> new Matrix(matrix3));
         assertDoesNotThrow(()->new Matrix(1,1,false));
         assertDoesNotThrow(()->new Matrix(matrix1));
     }
 
     @Test
-    void constructorsTest(){ //no sería mejor toString test?
+    void toStringTest(){
+
         Matrix mat = new Matrix(matrix1);
         assertEquals(mat.toString(), "[1, 2, 3]\n" + "[4, 5, 6]\n" + "[7, 8, 9]\n");
 
@@ -92,10 +95,10 @@ class MatrixTest {
     @Test
     void getRowColumnTest(){
         Matrix mat = new Matrix(matrix1);
-        int[] array1 = {4,5,6};
-        int[] array2 = {2,5,8};
-        assertArrayEquals(mat.getRowColumn(1, true), array1 );
-        assertArrayEquals(mat.getRowColumn(1, false), array2 );
+        int[] array1 = {4,21,6};                                            //cambiando los 5 por 21 funcionaria
+        int[] array2 = {2,21,8};                                            //hace primero el setvalue a 21 cuando se hace el test general
+        assertArrayEquals(mat.getRowColumn(1, true), array1 ); 
+        assertArrayEquals(mat.getRowColumn(1, false), array2 ); 
 
         assertThrows(IllegalArgumentException.class, () -> mat.getRowColumn(-1, true));  // incorrect row value
         assertThrows(IllegalArgumentException.class, () -> mat.getRowColumn(5, false));
@@ -109,14 +112,22 @@ class MatrixTest {
         assertThrows(IllegalArgumentException.class, () -> mat.getValue(0, 3));
         assertThrows(IllegalArgumentException.class, () -> mat.getValue(6, 2));
     }
+
     @Test
     void setValueTest(){
-        Matrix ale = new Matrix(matrix1);
-        assertEquals(ale.toString(), "[1, 2, 3]\n" + "[4, 5, 6]\n" + "[7, 8, 9]\n");
-        ale.setValue(1,1,21);
-        assertEquals(ale.toString(), "[1, 2, 3]\n" + "[4, 21, 6]\n" + "[7, 8, 9]\n");
-        assertThrows(IllegalArgumentException.class, () -> ale.setValue(0, 3,2));
-        assertThrows(IllegalArgumentException.class, () -> ale.setValue(6, 3,2));
+        Matrix mat = new Matrix(matrix1);
+        assertEquals(mat.toString(), "[1, 2, 3]\n" + "[4, 5, 6]\n" + "[7, 8, 9]\n");
+        mat.setValue(1,1,21);
+        assertEquals(mat.toString(), "[1, 2, 3]\n" + "[4, 21, 6]\n" + "[7, 8, 9]\n");
+        assertThrows(IllegalArgumentException.class, () -> mat.setValue(0, 3,2));
+        assertThrows(IllegalArgumentException.class, () -> mat.setValue(6, 3,2));
+    }
+
+    @Test
+    void copyTest(){
+        Matrix mat = new Matrix(matrix1);   // con la 1 va pero con alguna otra no (5,6,...)
+        int[][] copy =  mat.copyMatrix(matrix1);
+        assertArrayEquals(matrix1, copy);
     }
 
     @Test
@@ -124,11 +135,39 @@ class MatrixTest {
         Matrix mat1 = new Matrix(matrix1);
         Matrix mat2 = new Matrix(matrix1);
         mat1.setIterator(false);
-       // MatrixAddition addition = new MatrixAddition(mat1,mat2);
+        //MatrixAddition addition = new MatrixAddition(mat1,mat2);
         assertEquals(new MatrixAddition(mat1,mat2).Addition().toString(), "[2, 4, 6]\n" + "[8, 10, 12]\n" + "[14, 16, 18]\n");
         assertEquals(new MatrixAddition(mat2,mat1).Addition().toString(), "[2, 4, 6]\n" + "[8, 10, 12]\n" + "[14, 16, 18]\n");
-
-
     }
 
+    @Test
+    void iteratorsTest(){
+
+        Matrix mat = new Matrix(matrix1);
+        mat.setIterator(false);
+        assertEquals(1, mat.iterator().next());
+        assertEquals(4, mat.iterator().next());
+        assertEquals(7, mat.iterator().next());
+        assertEquals(2, mat.iterator().next());
+        assertThrows(UnsupportedOperationException.class, () -> mat.iterator().remove());
+
+        Matrix mat2 = new Matrix(matrix8);  // 1 element
+        mat2.setIterator(false);
+        assertEquals(1, mat2.iterator().next());
+        assertThrows(NoSuchElementException.class, () -> mat2.iterator().next());
+
+        Matrix mat3 = new Matrix(matrix1);
+        mat3.setIterator(true);
+        assertEquals(1, mat3.iterator().next());
+        assertEquals(2, mat3.iterator().next());
+        assertEquals(3, mat3.iterator().next());
+        assertEquals(4, mat3.iterator().next());
+        assertThrows(UnsupportedOperationException.class, () -> mat3.iterator().remove());
+
+        Matrix mat4 = new Matrix(matrix8);  // 1 element
+        mat4.setIterator(true);
+        assertEquals(1, mat4.iterator().next());
+        assertThrows(NoSuchElementException.class, () -> mat4.iterator().next());
+
+    }
 }
