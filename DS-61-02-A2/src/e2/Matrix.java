@@ -9,8 +9,7 @@ public class Matrix implements Iterable <Integer>  {
     private int[][] matrix;
     private int row;
     private int col;
-    private Iterator <Integer> iterator;
-    private final boolean rC;
+    private boolean rC;
 
     public Matrix(int row, int col, boolean rC){
         if(row<=0|| col<=0 ) throw new IllegalArgumentException("Wrong array size, input a positive integer");
@@ -19,23 +18,15 @@ public class Matrix implements Iterable <Integer>  {
         this.rC=rC;
         matrix = new int[row][col]; //It initializes to all zeroes
 
-        if(rC) this.iterator = new IterateRows(this);
-        else this.iterator = new IterateColumns(this);
-
     }
 
     public Matrix(int[][] a){ //Le faltaba el iterator y el rC
         if(!isValid(a)) throw new IllegalArgumentException("The inputed matrix isn't valid");
         this.matrix=copyMatrix(a);
         rC = true; //We initialize this matrix to have a RowColumn iterator
-        setIterator(rC);
 
     }
 
-    public void setIterator(boolean rowCol) {
-        if (rowCol) this.iterator = new IterateRows(this);
-        else this.iterator = new IterateColumns(this);
-    }
 
     public boolean getrC() {
         return rC;
@@ -45,8 +36,15 @@ public class Matrix implements Iterable <Integer>  {
         this.row = a.row;
         this.col = a.col;
         this.rC=a.rC;
-        setIterator(rC);
         this.matrix=copyMatrix(a.matrix);
+    }
+
+    public Iterator<Integer> rowColumnIterator(){
+        return new IterateRows(this); //Hay que mirar lo de los iterators
+    }
+
+    public Iterator<Integer> columnRowIterator(){
+        return new IterateColumns(this); //Hay que mirar lo de los iterators
     }
 
     public void setMatrix(int[][] matrix) {
@@ -54,7 +52,14 @@ public class Matrix implements Iterable <Integer>  {
         this.matrix = copyMatrix(matrix);
     }
 
-    public Iterator<Integer> iterator() { return iterator; }
+    public void setrC(boolean rC) {
+        this.rC = rC;
+    }
+
+    public Iterator<Integer> iterator() {
+        if (rC) return rowColumnIterator();
+        else return columnRowIterator();
+    } //Rowcolumn y columnRow
 
     public int getCol() {
         return col;
@@ -73,6 +78,8 @@ public class Matrix implements Iterable <Integer>  {
         if (row>=this.row||row<0||col>=this.col||col<0) throw new IllegalArgumentException("Incorrect row or column value");
         matrix[row][col]=value;
     }
+
+
 
     public int[][] getMatrix() {
         return matrix;

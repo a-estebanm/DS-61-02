@@ -3,6 +3,7 @@ package e2;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -147,32 +148,31 @@ class MatrixTest {
 
     @Test
     void iteratorsTest(){
-
         Matrix mat = new Matrix(matrix1);
-        mat.setIterator(false);
-        assertEquals(1, mat.iterator().next());
-        assertEquals(4, mat.iterator().next());
-        assertEquals(7, mat.iterator().next());
-        assertEquals(2, mat.iterator().next());
-        assertThrows(UnsupportedOperationException.class, () -> mat.iterator().remove());
+        Iterator<Integer> iter1 = mat.columnRowIterator();
+        assertEquals(1, iter1.next());
+        assertEquals(4, iter1.next());
+        assertEquals(7, iter1.next());
+        assertEquals(2, iter1.next());
+        assertThrows(UnsupportedOperationException.class, iter1::remove);
 
         Matrix mat2 = new Matrix(matrix8);  // 1 element
-        mat2.setIterator(false);
-        assertEquals(1, mat2.iterator().next());
-        assertThrows(NoSuchElementException.class, () -> mat2.iterator().next());
+        Iterator<Integer> iter2 = mat2.columnRowIterator();
+        assertEquals(1, iter2.next());
+        assertThrows(NoSuchElementException.class, iter2::next);
 
         Matrix mat3 = new Matrix(matrix1);
-        mat3.setIterator(true);
-        assertEquals(1, mat3.iterator().next());
-        assertEquals(2, mat3.iterator().next());
-        assertEquals(3, mat3.iterator().next());
-        assertEquals(4, mat3.iterator().next());
-        assertThrows(UnsupportedOperationException.class, () -> mat3.iterator().remove());
+        Iterator<Integer> iter3 = mat3.iterator();
+        assertEquals(1, iter3.next());
+        assertEquals(2, iter3.next());
+        assertEquals(3, iter3.next());
+        assertEquals(4, iter3.next());
+        assertThrows(UnsupportedOperationException.class, iter3::remove);
 
         Matrix mat4 = new Matrix(matrix8);  // 1 element
-        mat4.setIterator(true);
-        assertEquals(1, mat4.iterator().next());
-        assertThrows(NoSuchElementException.class, () -> mat4.iterator().next());
+        Iterator<Integer> iter4 = mat4.iterator();
+        assertEquals(1, iter4.next());
+        assertThrows(NoSuchElementException.class, iter4::next);
 
     }
 }
