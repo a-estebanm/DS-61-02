@@ -1,5 +1,6 @@
 package e3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Gunslinger {
@@ -8,6 +9,13 @@ public class Gunslinger {
     private List <GunslingerAction> rivalActions;
     private int rivalLoads;
     private Behavior behavior;
+
+    Gunslinger(Behavior behavior){
+        loads=0;
+        rivalLoads=0;
+        rivalActions = new ArrayList<GunslingerAction>();
+        this.behavior=behavior;
+    }
 
     public GunslingerAction action(){
         return behavior.action(this);
@@ -18,6 +26,8 @@ public class Gunslinger {
     }
 
     public void rivalAction(GunslingerAction action){
+        if (action==GunslingerAction.RELOAD) rivalLoads++;
+        if (action==GunslingerAction.SHOOT) rivalLoads--;
         rivalActions.add(action);
     }
 
@@ -31,5 +41,9 @@ public class Gunslinger {
 
     public void setBehavior(Behavior behavior){
         this.behavior=behavior;
+    }
+
+    public void reload(){
+        loads++;
     }
 }
