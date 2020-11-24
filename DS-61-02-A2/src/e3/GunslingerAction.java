@@ -7,7 +7,4 @@ public enum GunslingerAction {
     PROTECT,
     MACHINE_GUN;
 
-    GunslingerAction(){
-
-    }
 }

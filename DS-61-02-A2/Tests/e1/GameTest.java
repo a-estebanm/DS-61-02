@@ -10,11 +10,10 @@ class GameTest {
     Dice dice = new Dice(1);
     Orc c1 = new Orc(100,101, "OP orc", dice);
     Elf c2 = new Elf(100,30, "Elf1", dice);
-    Elf c6 = new Elf(100,30, "Elf2", dice);
     Hobbit c3 = new Hobbit(100,30, "Hobbit", dice);
     Human c4 = new Human(100,30, "Human", dice);
     Goblin c5 = new Goblin(100,30, "Goblin", dice);
-
+    Elf c6 = new Elf(100,30, "Elf2", dice);
     @Test
     void checkListsTest(){
 
@@ -64,17 +63,13 @@ class GameTest {
     void health1000(){
         Dice dice = new Dice(1);
         Orc c1 = new Orc(10000,10, "orco OP", dice);
-        Elf c2 = new Elf(100,30, "Elf1", dice);
-        Elf c3 = new Elf(100,30, "Elf2", dice);
-        Elf c4 = new Elf(100,30, "Elf3", dice);
-        Hobbit c5 = new Hobbit(100,30, "Elf4", dice);
         Goblin c6 = new Goblin(100,30, "Goblin", dice);
 
         Game <Character, Character> game = new Game<>(new ArrayList<>(), new ArrayList<>());
         game.getList1().add(c2);
         game.getList1().add(c3);
         game.getList1().add(c4);
-        game.getList1().add(c5);
+        game.getList2().add(c5);
         game.getList2().add(c1);
         game.getList2().add(c6);
         game.battle();

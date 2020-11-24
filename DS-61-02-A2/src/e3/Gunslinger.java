@@ -2,14 +2,15 @@ package e3;
 
 import java.util.List;
 
-public class Gunslinger implements Behavior {
+public class Gunslinger {
 
     private int loads;
     private List <GunslingerAction> rivalActions;
     private int rivalLoads;
+    private Behavior behavior;
 
     public GunslingerAction action(){
-
+        return behavior.action(this);
     }
 
     public int getLoads(){
@@ -29,11 +30,6 @@ public class Gunslinger implements Behavior {
     }
 
     public void setBehavior(Behavior behavior){
-
-    }
-
-    @Override
-    public GunslingerAction action(Gunslinger g) {
-        return null;
+        this.behavior=behavior;
     }
 }
