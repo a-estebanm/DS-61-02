@@ -6,14 +6,14 @@ import java.util.List;
 public class Gunslinger {
 
     private int loads;
-    private List <GunslingerAction> rivalActions;
+    private final List <GunslingerAction> rivalActions; //Final??
     private int rivalLoads;
     private Behavior behavior;
 
     Gunslinger(Behavior behavior){
         loads=0;
         rivalLoads=0;
-        rivalActions = new ArrayList<GunslingerAction>();
+        rivalActions = new ArrayList<>();
         this.behavior=behavior;
     }
 

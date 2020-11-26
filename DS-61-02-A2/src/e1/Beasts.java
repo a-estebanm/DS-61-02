@@ -1,7 +1,5 @@
 package e1;
 
-import java.util.Random;
-
 public abstract class Beasts extends Character {
 
 
