@@ -4,34 +4,38 @@ public class Gunfight {
 
 
     private int print;
-
+    private String action1;
+    private String action2;
 
     public void duel (Gunslinger g1, Gunslinger g2){
         for (int i=1;i<=50;i++){
 
-            System.out.print("Round " + i +" ------------" + "\nGunslinger  1: " + g1.action().toString() + "\nGunslinger  2: " + g2.action().toString());
+            String action1 = g1.action().toString();
+            String action2 = g2.action().toString();
 
-            if (g1.action().equals(GunslingerAction.MACHINE_GUN)){
-                if(g2.action().equals(GunslingerAction.MACHINE_GUN)){
+            System.out.print("Round " + i +" ------------" + "\nGunslinger  1: " + action1 + "\nGunslinger  2: " + action2);
+
+            if (action1.equals("MACHINE_GUN")){
+                if(action2.equals("MACHINE_GUN")){
                     i=51;
                     print=3;
                 } else {
                     i=51;
                     print=1;
                 }
-            } else if (g2.action().equals(GunslingerAction.MACHINE_GUN)){
+            } else if (action2.equals("MACHINE_GUN")){
                 i=51; print=2;
 
-            } else if(g1.action().equals(GunslingerAction.SHOOT)){
+            } else if(action1.equals("SHOOT")){
 
-                if(g2.action().equals(GunslingerAction.SHOOT)){ i=50; print=3; }
-                else if (g2.action().equals(GunslingerAction.RELOAD)){
+                if(action2.equals("SHOOT")){ i=51; print=3; }
+                else if (action2.equals("RELOAD")){
                     i=51;
                     print=1;
                 } else print=0;
 
-            } else if (g2.action().equals(GunslingerAction.SHOOT)) {
-                if (g1.action().equals(GunslingerAction.RELOAD)){
+            } else if (action2.equals("SHOOT")) {
+                if (action1.equals("RELOAD")){
                     i=51;
                     print=2;
                 } else print=0;
@@ -53,14 +57,6 @@ public class Gunfight {
         else if(print==1) System.out.print("\n\nThe duel has come to an end\n\nGUNSLINGER1 is the winner\n");
         else if(print==2) System.out.print("\n\nThe duel has come to an end\n\nGUNSLINGER2 is the winner\n");
         else if(print==3) System.out.print("\n\nThe duel has come to an end\n\nBoth gunslingers are dead, may god have mercy on their souls\n\nthere are no real winners in war\n");
-
-    }
-
-
-    public static void main(String []args){
-    Gunfight luta = new Gunfight();
-    luta.duel(new Gunslinger( new ReloadForEvar() ), new Gunslinger(new Protect()));
-
 
     }
 }

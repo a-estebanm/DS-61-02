@@ -14,6 +14,7 @@ class GameTest {
     Human c4 = new Human(100,30, "Human", dice);
     Goblin c5 = new Goblin(100,30, "Goblin", dice);
     Elf c6 = new Elf(100,30, "Elf2", dice);
+
     @Test
     void checkListsTest(){
 
