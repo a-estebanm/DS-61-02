@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Gunslinger {
 
-    private int loads;
+    private int loads; //protected??
     private final List <GunslingerAction> rivalActions; //Final??
     private int rivalLoads;
     private Behavior behavior;
@@ -18,7 +18,9 @@ public class Gunslinger {
     }
 
     public GunslingerAction action(){
-        return behavior.action(this);
+        GunslingerAction action = behavior.action(this);
+        if (action==GunslingerAction.RELOAD) loads++;
+        return action;
     }
 
     public int getLoads(){
@@ -43,7 +45,4 @@ public class Gunslinger {
         this.behavior=behavior;
     }
 
-    public void reload(){
-        loads++;
-    }
 }
