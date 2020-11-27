@@ -4,8 +4,6 @@ public class Gunfight {
 
 
     private int print;
-    private String action1;
-    private String action2;
 
     public void duel (Gunslinger g1, Gunslinger g2){
         for (int i=1;i<=50;i++){

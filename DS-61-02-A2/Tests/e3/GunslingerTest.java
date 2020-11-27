@@ -17,7 +17,6 @@ class GunslingerTest {
         assertEquals("RELOAD",Rel_Oad.action().toString());
         assertEquals(1, Rel_Oad.getLoads());
 
-
         Rel_Oad.setBehavior(new Protect());
         assertEquals("PROTECT",Rel_Oad.action().toString());
 

@@ -20,6 +20,10 @@ public class Gunslinger {
     public GunslingerAction action(){
         GunslingerAction action = behavior.action(this);
         if (action==GunslingerAction.RELOAD) loads++;
+        if (action==GunslingerAction.SHOOT) if (loads==0) throw new IllegalArgumentException("You can't shoot with no bullets");
+        else loads --;
+        if (action==GunslingerAction.MACHINE_GUN) if (loads<5) throw new IllegalArgumentException("You don't have enough bullets");
+        else loads-=5;
         return action;
     }
 
