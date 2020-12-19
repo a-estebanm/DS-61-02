@@ -5,8 +5,7 @@ public class Thermostat {
     private boolean heating;
     private float temp;
     private ThermostatState state;
-    private List<Float> temps = new ArrayList<>();
-    private List<ThermostatState> states = new ArrayList<>();
+    private StringBuilder info = new StringBuilder();
 
 
     public boolean isHeating() {
@@ -24,8 +23,20 @@ public class Thermostat {
     public void newTemperature (float currentTemperature){
         temp = currentTemperature;
         state.timePasses(this);
-        temps.add(currentTemperature);
-        states.add(state);
+        insInfo();
+
+
+    }
+    public void insInfo(){
+        info.append(temp+"  "+"heating ");
+        if (heating) { info.append("ON"); } else info.append("OFF");
+        info.append("  mode "+state+"\n");
+
+    }
+    public String ScreenInfo (){
+        StringBuilder str = new StringBuilder();
+
+        return str.toString();
     }
 
     public float getTemp() {
