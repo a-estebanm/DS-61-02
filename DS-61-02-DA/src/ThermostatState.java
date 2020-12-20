@@ -1,5 +1,9 @@
 public interface ThermostatState {
-    default void timePasses(Thermostat t){
+    default void timePasses(){
+    }
+
+    default void setState(Thermostat t,ThermostatState s){
+        t.newState(s);
     }
     default int getTimeLeft(){
         return 0;

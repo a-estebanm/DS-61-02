@@ -1,21 +1,30 @@
 public class Timer implements ThermostatState{
 
     private int timeLeft;
+    private final Thermostat t;
+
 
     Timer(Thermostat t, int timeLeft){
-        if (t.getState().getClass()==Program.class) throw new IllegalArgumentException();   // Correcto o coupling?
         this.timeLeft=timeLeft;
-        t.getInfo().append("Timer mode enabled for "+timeLeft+"\n");
+        t.setHeating(true);
+        this.t = t;
+        t.getInfo().append("Timer mode enabled for ").append(timeLeft).append(" minutes\n");
     }
 
     @Override
-    public void timePasses(Thermostat t) {
+    public void timePasses() {
         if (timeLeft<=5){
-
-            t.setState(new Off(t));
+            t.newState(new Off(t));
             t.getInfo().append("Timer mode disabled\n");
         }
         timeLeft-=5;
+    }
+    @Override
+    public void setState(Thermostat t, ThermostatState s) {
+        if (s.getClass().getName().equals(Program.class.getName())) {
+            t.newState(new Off(t));
+        }
+        else t.newState(s);
 
     }
 
