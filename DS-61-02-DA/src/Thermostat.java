@@ -5,6 +5,7 @@ public class Thermostat {
     private boolean heating;
     private float temp;
     private ThermostatState state;
+    private ThermostatState prevstate;
     private StringBuilder info = new StringBuilder();
 
 
