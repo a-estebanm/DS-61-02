@@ -32,10 +32,6 @@ public class Thermostat {
         this.heating = heating;
     }
 
-    public void stateChange(){
-
-    }
-
     Thermostat (){
     }
 
@@ -55,7 +51,6 @@ public class Thermostat {
         info.append("\n");
     }
     public String screenInfo (){
-
         return info.toString();
     }
 
@@ -67,34 +62,9 @@ public class Thermostat {
         return state;
     }
 
-    public StringBuilder getInfo(){return info;}
-
-
-
-    public static void main (String [] args){
-
-        Thermostat termo = new Thermostat();
-        termo.setState(new Timer(termo,8));
-        termo.newTemperature(24);
-       // System.out.print(termo.state.getClass().getName()+"\n");
-        termo.setState(new Program(termo,25));
-        termo.newTemperature(22);
-        termo.newTemperature(24);
-        termo.newTemperature(24);
-        termo.setState(new Program(termo,25));
-        termo.newTemperature(24);
-        termo.newTemperature(26);
-        termo.newTemperature(23);
-        termo.setState(new Timer(termo,4));
-        termo.setState(new Timer(termo,4));
-        termo.newTemperature(21);
-        termo.setState(new Off(termo));
-        termo.newTemperature(24);
-        termo.newTemperature(21);
-        termo.setState(new Manual(termo));
-        termo.newTemperature(21);
-        termo.newTemperature(25);
-        System.out.print(termo.screenInfo());
-
+    public boolean getHeating(){
+        return heating;
     }
+
+    public StringBuilder getInfo(){return info;}
 }
