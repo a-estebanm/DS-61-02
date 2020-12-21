@@ -25,6 +25,7 @@ public class Program implements ThermostatState{
         if (s.getClass().getName().equals(Timer.class.getName())) {
             //t.getInfo().append("Timer mode disabled\n");
             t.newState(new Off(t));
+           // t.getInfo().append("Off mode enabled\n");
 
         }
         else t.newState(s);

@@ -23,6 +23,7 @@ public class Timer implements ThermostatState{
     public void setState(Thermostat t, ThermostatState s) {
         if (s.getClass().getName().equals(Program.class.getName())) {
             t.newState(new Off(t));
+            //t.getInfo().append("Off mode enabled\n");
         }
         else t.newState(s);
 
