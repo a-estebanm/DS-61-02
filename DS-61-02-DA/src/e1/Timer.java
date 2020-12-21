@@ -1,3 +1,5 @@
+package e1;
+
 public class Timer implements ThermostatState{
 
     private int timeLeft;
@@ -8,22 +10,19 @@ public class Timer implements ThermostatState{
         this.timeLeft=timeLeft;
         t.setHeating(true);
         this.t = t;
-        //t.getInfo().append("Timer mode enabled for ").append(timeLeft).append(" minutes\n");
     }
 
     @Override
     public void timePasses() {
         if (timeLeft<=5){
             t.newState(new Off(t));
-            //t.getInfo().append("Timer mode disabled\n");
         }
         timeLeft-=5;
     }
     @Override
     public void setState(Thermostat t, ThermostatState s) {
-        if (s.getClass().getName().equals(Program.class.getName())) {
+        if (s.getClass().getSimpleName().equals("Program")) {
             t.newState(new Off(t));
-            //t.getInfo().append("Off mode enabled\n");
         }
         else t.newState(s);
 
