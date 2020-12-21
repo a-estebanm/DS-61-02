@@ -55,23 +55,6 @@ public class Thermostat {
         return info;
     }
 
-    public static void main (String[] args){
-        Thermostat termo = new Thermostat();
-        termo.setState(new Timer(termo,15));
-        termo.newTemperature(25);
-        termo.setState(new Timer(termo,10));
-        termo.newTemperature(15);
-        termo.newTemperature(55);
-        termo.setState(new Program(termo,25));
-        termo.newTemperature(15);
-        termo.setState(new Program(termo,25));
-        termo.setState(new Program(termo,24));
-        termo.newTemperature(55);
-        termo.setState(new Timer(termo,15));
-        termo.setState(new Timer(termo,15));
-        termo.setState(new Program(termo,24));
-        System.out.print(termo.screenInfo());
 
-    }
 
 }
