@@ -6,7 +6,7 @@ public class Program implements ThermostatState{
     Program(Thermostat t, float temp){
         this.threshold=temp;
         t.setHeating(t.getTemp() < threshold);
-        t.getInfo().append("Program mode enabled with threshold of ").append(threshold).append("\n");
+        //t.getInfo().append("Program mode enabled with threshold of ").append(threshold).append("\n");
         this.t=t;
     }
 
@@ -23,7 +23,7 @@ public class Program implements ThermostatState{
     @Override
     public void setState(Thermostat t, ThermostatState s) {
         if (s.getClass().getName().equals(Timer.class.getName())) {
-            t.getInfo().append("Timer mode disabled\n");
+            //t.getInfo().append("Timer mode disabled\n");
             t.newState(new Off(t));
 
         }

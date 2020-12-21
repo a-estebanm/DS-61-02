@@ -8,14 +8,14 @@ public class Timer implements ThermostatState{
         this.timeLeft=timeLeft;
         t.setHeating(true);
         this.t = t;
-        t.getInfo().append("Timer mode enabled for ").append(timeLeft).append(" minutes\n");
+        //t.getInfo().append("Timer mode enabled for ").append(timeLeft).append(" minutes\n");
     }
 
     @Override
     public void timePasses() {
         if (timeLeft<=5){
             t.newState(new Off(t));
-            t.getInfo().append("Timer mode disabled\n");
+            //t.getInfo().append("Timer mode disabled\n");
         }
         timeLeft-=5;
     }
