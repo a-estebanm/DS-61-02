@@ -58,5 +58,7 @@ class ThermostatTest {
 
         termo.setState(new Timer(termo,15));
         assertEquals("Timer",termo.getState().getClass().getSimpleName());
+
+        System.out.print(termo.screenInfo());
     }
 }
