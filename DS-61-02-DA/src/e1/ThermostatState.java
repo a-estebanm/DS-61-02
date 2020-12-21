@@ -8,9 +8,9 @@ public interface ThermostatState {
         t.newState(s);
     }
     default int getTimeLeft(){
-        return 0;
+        throw new UnsupportedOperationException("getTimeLeft");
     }
     default float getThresHold(){
-        return 0;
+        throw new UnsupportedOperationException("getThreshold");
     }
 }
