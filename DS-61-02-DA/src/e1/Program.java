@@ -32,5 +32,15 @@ public class Program implements ThermostatState{
         }
         else t.newState(s);
     }
+
+    @Override
+    public void writeInfo(StringBuilder info) {
+        info.append(getClass().getSimpleName()).append(" mode enabled ").append(threshold).append(" threshold\n");
+    }
+
+    @Override
+    public void writeTP(StringBuilder info) {
+        info.append(" threshold at ").append(threshold);
+    }
 }
 

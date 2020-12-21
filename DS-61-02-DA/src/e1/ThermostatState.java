@@ -1,6 +1,7 @@
 package e1;
 
 public interface ThermostatState {
+
     default void timePasses(){
     }
 
@@ -8,9 +9,19 @@ public interface ThermostatState {
         t.newState(s);
     }
     default int getTimeLeft(){
-        throw new UnsupportedOperationException("getTimeLeft");
+        return 0;
     }
     default float getThresHold(){
-        throw new UnsupportedOperationException("getThreshold");
+        return 0;
+    }
+    default void writeInfo(StringBuilder info) {
+        info.append(this.getClass().getSimpleName()).append(" mode enabled\n");
+    }
+
+    default void writeTP(StringBuilder info){
+    }
+
+    default boolean compare (ThermostatState state){
+        return (this.getClass()==state.getClass()&&this.getTimeLeft()== state.getTimeLeft()&&this.getThresHold()== state.getThresHold());
     }
 }
