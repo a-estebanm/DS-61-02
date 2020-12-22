@@ -1,5 +1,5 @@
 package e2;
-
+//n
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +16,6 @@ public class Team extends ProjectElem {
     public ProjectElem getElement(int i){ return elems.get(i);}
     public void remove(ProjectElem elem) { elems.remove(elem); }
 
-
-
     public boolean exists(String Id, boolean b){
         for(ProjectElem elem : elems)
             if(elem instanceof Team){
@@ -25,7 +23,6 @@ public class Team extends ProjectElem {
             } else if (elem.getId().equals(Id)) { return true; }
         return b;
     }
-
 
     public String teamStr(int i, StringBuilder tInfo){
         tInfo.append( this.str() ).append("\n");

@@ -1,5 +1,5 @@
 package e2;
-
+//n
 public class Worker extends ProjectElem {
     private float cost;
     private float time;
@@ -9,8 +9,6 @@ public class Worker extends ProjectElem {
         cost = Cost;
         time = Time;
     }
-
-
 
     public void setCost(float Cost) { this.cost = Cost; }
     public float getCost() { return cost; }
