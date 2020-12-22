@@ -1,6 +1,6 @@
 package e1;
 
-public interface ThermostatState {
+public interface ThermostatState {//a
 
     default void timePasses(){
     }

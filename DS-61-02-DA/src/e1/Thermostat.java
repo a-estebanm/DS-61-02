@@ -1,6 +1,6 @@
 package e1;
 
-public final class Thermostat {
+public final class Thermostat {//a
 
     private boolean heating;
     private float temp = 20; //We set 20 as initial temperature

@@ -1,6 +1,6 @@
 package e1;
 
-public class Manual implements ThermostatState{
+public class Manual implements ThermostatState{//a
 
     Manual(Thermostat t) {
 

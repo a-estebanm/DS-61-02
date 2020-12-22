@@ -1,6 +1,6 @@
 package e1;
 
-public final class Timer implements ThermostatState{
+public final class Timer implements ThermostatState{//a
 
     private int timeLeft;
     private final Thermostat t;
