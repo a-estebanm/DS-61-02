@@ -78,6 +78,7 @@ class ThermostatTest {
         termo.setState(new Manual(termo));
         termo.newTemperature(17);
         termo.newTemperature(15);
+        termo.setHeating(true);
         assertEquals(termo.screenInfo(), """
                 Program mode enabled 15.0 threshold
                 12.0  heating ON   mode Program threshold at 15.0

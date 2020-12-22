@@ -1,6 +1,6 @@
 package e1;
 
-public class ThermostatInfo {
+public final class ThermostatInfo {
 
     private final Thermostat t;
     private final StringBuilder info = new StringBuilder();

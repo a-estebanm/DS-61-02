@@ -1,6 +1,6 @@
 package e1;
 
-public class Timer implements ThermostatState{
+public final class Timer implements ThermostatState{
 
     private int timeLeft;
     private final Thermostat t;
@@ -15,14 +15,14 @@ public class Timer implements ThermostatState{
     @Override
     public void timePasses() {
         if (timeLeft<=5){
-            t.getInfo().getInfo().append("Timer mode disabled\n");
+            t.getInfo().append("Timer mode disabled\n");
             t.newState(new Off(t));
         }
         timeLeft-=5;
     }
     @Override
     public void setState(Thermostat t, ThermostatState s) {
-        if (!( s instanceof Timer)) t.getInfo().getInfo().append("Timer mode disabled\n");
+        if (!( s instanceof Timer)) t.getInfo().append("Timer mode disabled\n");
         if (s instanceof Program) {
             t.newState(new Off(t));
 

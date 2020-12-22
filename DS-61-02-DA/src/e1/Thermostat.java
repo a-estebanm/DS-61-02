@@ -1,6 +1,6 @@
 package e1;
 
-public class Thermostat {
+public final class Thermostat {
 
     private boolean heating;
     private float temp = 20; //We set 20 as initial temperature
@@ -16,7 +16,7 @@ public class Thermostat {
         this.state.setState(this, state);
     }
 
-    protected void newState(ThermostatState state){
+    void newState(ThermostatState state){
 
         if((!this.state.compare(state))){
             info.newInfo(state);
@@ -24,7 +24,7 @@ public class Thermostat {
         this.state = state;
     }
 
-    public void setHeating(boolean heating) {
+    void setHeating(boolean heating) {
         this.heating = heating;
     }
 
@@ -51,8 +51,8 @@ public class Thermostat {
         return heating;
     }
 
-    public ThermostatInfo getInfo(){
-        return info;
+    public StringBuilder getInfo(){
+        return info.getInfo();
     }
 
 

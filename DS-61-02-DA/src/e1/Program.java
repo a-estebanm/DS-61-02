@@ -1,6 +1,6 @@
 package e1;
 
-public class Program implements ThermostatState{
+public final class Program implements ThermostatState{
 
     private final float threshold;
     private final Thermostat t;
