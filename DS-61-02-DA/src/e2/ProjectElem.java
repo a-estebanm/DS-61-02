@@ -1,20 +1,7 @@
 package e2;
-//n
+
 public abstract class ProjectElem {
-    private String id;
-    /*
-    private float cost;
-    private float time;
-
-
-    public void setCost(float Cost) { this.cost = Cost; }
-    public float getCost() { return cost; }
-
-    public void setTime(float Time) { this.time = Time; }
-    public float getTime() { return time; }
-
-    public ProjectElem() { }
-    */
+    private final String id;
 
     public ProjectElem(String Id) {this.id = Id;}
 
@@ -22,6 +9,5 @@ public abstract class ProjectElem {
     public abstract float cost();
     public abstract String str();
 
-    public void setId(String Id) { this.id = Id; }
     public String getId() { return id; }
 }
