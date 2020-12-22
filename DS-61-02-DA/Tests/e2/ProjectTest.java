@@ -6,11 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProjectTest {
 
-    Team Project = new Team("Project");
     Team team1 = new Team("team 1");
     Team team2 = new Team("team 2");
     Team team3 = new Team("team 3");
-    Team team4 = new Team("team 4");
 
     Worker w1 = new Worker("w1",1f,1f);
     Worker w2 = new Worker("w2",2f,2f);
