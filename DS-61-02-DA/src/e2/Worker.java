@@ -20,7 +20,7 @@ public class Worker extends ProjectElem {
 
     @Override
     public String str() {
-        return "Worker " + this.getId() + ": " + this.getTime() + " hours, " + this.getCost() + " €";
+        return "Worker " + this.getId() + ": " + this.time() + " hours, " + this.cost() + " €";
     }
     @Override
     public float time(){ return time; }
