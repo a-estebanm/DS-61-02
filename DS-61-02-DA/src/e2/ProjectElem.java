@@ -20,6 +20,7 @@ public abstract class ProjectElem {
 
     public abstract float time();
     public abstract float cost();
+    public abstract String str();
 
     public void setId(String Id) { this.id = Id; }
     public String getId() { return id; }

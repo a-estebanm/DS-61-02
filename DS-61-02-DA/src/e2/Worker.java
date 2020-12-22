@@ -10,12 +10,18 @@ public class Worker extends ProjectElem {
         time = Time;
     }
 
+
+
     public void setCost(float Cost) { this.cost = Cost; }
     public float getCost() { return cost; }
 
     public void setTime(float Time) { this.time = Time; }
     public float getTime() { return time; }
 
+    @Override
+    public String str() {
+        return "Worker " + this.getId() + ": " + this.getTime() + " hours, " + this.getCost() + " €";
+    }
     @Override
     public float time(){ return time; }
     @Override
