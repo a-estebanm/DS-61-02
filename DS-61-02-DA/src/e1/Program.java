@@ -3,16 +3,14 @@ package e1;
 public final class Program implements ThermostatState{//a
 
     private final float threshold;
-    private final Thermostat t;
 
     Program(Thermostat t, float temp){
         this.threshold=temp;
         t.setHeating(t.getTemp() < threshold);
-        this.t=t;
     }
 
     @Override
-    public void timePasses() {
+    public void timePasses(Thermostat t) {
         t.setHeating(t.getTemp() < threshold);
     }
 
