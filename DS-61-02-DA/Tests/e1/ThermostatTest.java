@@ -10,16 +10,16 @@ class ThermostatTest {
     void offtest() {
         Thermostat termo = new Thermostat();
         termo.setState(new Timer(termo,15));
-        assertEquals("Timer",termo.getState().getClass().getSimpleName());
+        assertTrue(termo.getState() instanceof Timer);
 
         termo.setState(new Program(termo,25));
-        assertEquals("Off",termo.getState().getClass().getSimpleName());
+        assertTrue(termo.getState() instanceof Off);
 
         termo.setState(new Program(termo,25));
-        assertEquals("Program",termo.getState().getClass().getSimpleName());
+        assertTrue(termo.getState() instanceof Program);
 
         termo.setState(new Manual(termo));
-        assertEquals("Manual",termo.getState().getClass().getSimpleName());
+        assertTrue(termo.getState() instanceof Manual);
 
     }
     @Test
@@ -36,7 +36,7 @@ class ThermostatTest {
         assertEquals(termo.getState().getTimeLeft(),2);
 
         termo.newTemperature(17);
-        assertEquals("Off",termo.getState().getClass().getSimpleName());
+        assertTrue(termo.getState() instanceof Off);
         assertFalse(termo.getHeating());
 
         termo.setState(new Manual(termo));
@@ -54,11 +54,49 @@ class ThermostatTest {
         assertTrue(termo.getHeating());
 
         termo.setState(new Timer(termo,15));
-        assertEquals("Off",termo.getState().getClass().getSimpleName());
+        assertTrue(termo.getState() instanceof Off);
 
         termo.setState(new Timer(termo,15));
-        assertEquals("Timer",termo.getState().getClass().getSimpleName());
+        assertTrue(termo.getState() instanceof Timer);
+    }
 
-        System.out.print(termo.screenInfo());
+    @Test
+    void logTest(){
+        Thermostat termo = new Thermostat();
+        termo.setState(new Program(termo,15));
+        termo.newTemperature(12);
+        termo.newTemperature(17);
+        termo.setState(new Timer(termo,15));
+        termo.setState(new Timer(termo,15));
+        termo.newTemperature(12);
+        termo.newTemperature(12);
+        termo.newTemperature(12);
+        termo.setState(new Timer(termo,15));
+        termo.setState(new Program(termo,15));
+        termo.setState(new Program(termo,25));
+        termo.setState(new Off(termo));
+        termo.setState(new Manual(termo));
+        termo.newTemperature(17);
+        termo.newTemperature(15);
+        assertEquals(termo.screenInfo(), """
+                Program mode enabled 15.0 threshold
+                12.0  heating ON   mode Program threshold at 15.0
+                17.0  heating OFF  mode Program threshold at 15.0
+                Off mode enabled
+                Timer mode enabled (15 remaining)
+                12.0  heating ON   mode Timer (10 remaining)
+                12.0  heating ON   mode Timer (5 remaining)
+                Timer mode disabled
+                Off mode enabled
+                12.0  heating OFF  mode Off
+                Timer mode enabled (15 remaining)
+                Timer mode disabled
+                Off mode enabled
+                Program mode enabled 25.0 threshold
+                Off mode enabled
+                Manual mode enabled
+                17.0  heating ON   mode Manual
+                15.0  heating ON   mode Manual
+                """);
     }
 }
