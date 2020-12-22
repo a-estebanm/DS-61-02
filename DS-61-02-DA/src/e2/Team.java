@@ -14,7 +14,6 @@ public class Team extends ProjectElem {
 
     private boolean b;
 
-
     public boolean exists(String Id){
         for(ProjectElem elem : elems)
             if(elem.getClass().getSimpleName().equals("Team")){
@@ -47,7 +46,7 @@ public class Team extends ProjectElem {
 
     @Override
     public String str() {
-        return "Team " + this.getId() + ": " + this.time() + " hours, " + this.cost() + " €";
+        return "Team " + this.getId() + ": " + this.time() + " hours, " + this.time() + " €";
     }
     @Override
     public float time() {
