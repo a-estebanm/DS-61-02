@@ -31,7 +31,7 @@ public final class Thermostat {//a
 
     public void newTemperature (float currentTemperature){
         temp = currentTemperature;
-        state.timePasses();
+        state.timePasses(this);
         info.insInfo();
 
     }

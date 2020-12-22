@@ -2,7 +2,7 @@ package e1;
 
 public interface ThermostatState {//a
 
-    default void timePasses(){
+    default void timePasses(Thermostat t){
     }
 
     default void setState(Thermostat t,ThermostatState s){

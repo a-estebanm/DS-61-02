@@ -3,17 +3,15 @@ package e1;
 public final class Timer implements ThermostatState{//a
 
     private int timeLeft;
-    private final Thermostat t;
 
 
     Timer(Thermostat t, int timeLeft){
         this.timeLeft=timeLeft;
         t.setHeating(true);
-        this.t = t;
     }
 
     @Override
-    public void timePasses() {
+    public void timePasses(Thermostat t) {
         if (timeLeft<=5){
             t.getInfo().append("Timer mode disabled\n");
             t.newState(new Off(t));
