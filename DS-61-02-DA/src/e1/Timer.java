@@ -22,8 +22,8 @@ public class Timer implements ThermostatState{
     }
     @Override
     public void setState(Thermostat t, ThermostatState s) {
-        if (!s.getClass().getSimpleName().equals("Timer")) t.getInfo().getInfo().append("Timer mode disabled\n");
-        if (s.getClass().getSimpleName().equals("Program")) {
+        if (!( s instanceof Timer)) t.getInfo().getInfo().append("Timer mode disabled\n");
+        if (s instanceof Program) {
             t.newState(new Off(t));
 
         }
